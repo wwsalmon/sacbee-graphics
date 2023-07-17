@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "sacbee graphics by samson",
   "scripts": {
-    "dev": "parcel src/index.html"
+    "goat": "parcel src/goat.html"
   },
   "author": "",
   "license": "ISC",
