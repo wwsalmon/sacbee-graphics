@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script type="module">
+        import Chart from "chart.js/auto";
+        import "chartjs-adapter-date-fns";
+        import {enUS} from "date-fns/locale";
+
+        const ctx = document.getElementById("myChart");
+
+        const data = {
+            datasets: [{
+                label: "Monthly minimum wage for 24/7 goat herders",
+                data: [
+                    { x: "2016-01-01", y: "1200" },
+                    { x: "2017-01-01", y: "1989.64" },
+                    { x: "2018-01-01", y: "2089.13" },
+                    { x: "2019-01-01", y: "2188.57" },
+                    { x: "2020-01-01", y: "2387.51" },
+                    { x: "2021-01-01", y: "2586.39" },
+                    { x: "2022-01-01", y: "3444.56" },
+                    { x: "2022-03-01", y: "14105" },
+                    { x: "2022-09-27", y: "3444.56" },
+                    { x: "2023-01-01", y: "3854.39" },
+                    { x: "2024-01-01", y: "15962.08" },
+                    { x: "2025-01-01", y: "18538.00" },
+                ],
+                stepped: true,
+            }]
+        };
+
+        new Chart(ctx, {
+            type: "line",
+            data: data,
+            options: {
+                scales: {
+                    x: {
+                        type: "time",
+                        adapters: {
+                            date: {
+                                locale: enUS,
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
