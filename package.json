@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "sacbee graphics by samson",
   "scripts": {
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --dist-dir build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.9.3"
+    "parcel": "2.7.0"
   },
   "dependencies": {
     "chart.js": "^4.3.0",
