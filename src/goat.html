@@ -11,68 +11,66 @@
 </head>
 
 <body>
-    <div id="chartContainer">
+    <div id="szhGoatChartContainer">
         <div>
-            <h1 style="margin: 0; line-height: 1.1;">Changing wages for goat herders</h1>
-            <p style="margin-top: 8px;">Minimum monthly wage for California goat herders working 24/7 at company with 25 employees or less</p>
+            <div><span style="line-height: 1.1; font-family: 'Noto Serif', serif; font-weight: 700; font-size: 24px;">Changing wages for goat herders</span></div>
+            <div style="margin-top: 8px; color: #666;"><span>Minimum monthly wage for California goat herders working 24/7 at company with 25 employees or less</span></div>
         </div>
-        <canvas id="myChart"></canvas>
-        <div class="grid" style="grid-template-columns: auto auto; margin-top: 8px;">
-            <div style="color: #003f5c;" class="label">
-                <p>Sept. 2016</p>
-                <p>AB 1066 passed</p>
-                <p>Gradual increases from $1,200</p>
+        <canvas id="szhGoatChart"></canvas>
+        <div class="szhGoatGrid" style="grid-template-columns: auto auto; margin-top: 8px;">
+            <div style="color: #003f5c;" class="szhGoatLabel">
+                <div><span>Sept. 2016</span></div>
+                <div><span>AB 1066 passed</span></div>
+                <div><span>Gradual increases from $1,200</span></div>
             </div>
-            <div style="color: #7a5195;" class="label">
-                <p>March 2022</p>
-                <p>EDD changes herder classification</p>
-                <p>$14,105</p>
+            <div style="color: #7a5195;" class="szhGoatLabel">
+                <div><span>March 2022</span></div>
+                <div><span>EDD changes herder classification</span></div>
+                <div><span>$14,105</span></div>
             </div>
-            <div style="color: #ef5675;" class="label">
-                <p>Sept. 2022</p>
-                <p>AB 156 passed</p>
-                <p>Back to $3,444.56</p>
+            <div style="color: #ef5675;" class="szhGoatLabel">
+                <div><span>Sept. 2022</span></div>
+                <div><span>AB 156 passed</span></div>
+                <div><span>Back to $3,444.56</span></div>
             </div>
-            <div style="color: #ffa600;" class="label">
-                <p>Jan. 2024</p>
-                <p>AB 156 section expires</p>
-                <p>$15,952.08</p>
+            <div style="color: #ffa600;" class="szhGoatLabel">
+                <div><span>Jan. 2024</span></div>
+                <div><span>AB 156 section expires</span></div>
+                <div><span>$15,952.08</span></div>
             </div>
         </div>
-        <p style="opacity: 0.5; font-size: 12px;">Sources: <a style="color: black" href="https://www.dir.ca.gov/dlse/Sheepherders-owed-as-a-result-of-AB-1066s-Overtime-Phase-In.html">Department of Industrial Relations</a>, spokesperson comment. Graphic by Samson Zhang</p>
+        <div style="margin-top: 8px; line-height: 1.1"><span style="color: #666; font-size: 12px;">Source: <a style="color: #666" href="https://www.dir.ca.gov/dlse/Sheepherders-owed-as-a-result-of-AB-1066s-Overtime-Phase-In.html">Department of Industrial Relations</a>. Graphic by Samson Zhang</span></div>
     </div>
     <style>
-        body {
+        #szhGoatChartContainer {
             font-family: "Noto Sans", sans-serif;
+            line-height: normal;
+            margin: 32px 0;
         }
 
-        .grid {
+        .szhGoatGrid {
             display: grid;
         }
 
         @media (min-width: 600px) {
-            .grid {
+            .szhGoatGrid {
                 display: none;
             }
         }
 
-        .label {
+        .szhGoatLabel {
             margin: 8px 0;
         }
 
-        .label p {
-            margin: 0;
-        }
-
-        .label p:first-of-type {
+        .szhGoatLabel div:first-of-type {
             text-transform: uppercase; font-weight: 300; font-size: 12px;
         }
 
-        .label p:nth-of-type(2) {
+        .szhGoatLabel div:nth-of-type(2) {
             font-weight: 600; font-size: 16px;
         }
 
-        .label p:nth-of-type(3) {
+        .szhGoatLabel div:nth-of-type(3) {
             font-style: "italic"; font-size: 12px;
         }
     </style>
@@ -90,8 +88,8 @@
         import { enUS } from "date-fns/locale";
         import annotationPlugin from "chartjs-plugin-annotation";
 
-        const ctx = document.getElementById("myChart");
-        const width = document.getElementById("chartContainer").offsetWidth;
+        const ctx = document.getElementById("szhGoatChart");
+        const width = document.getElementById("szhGoatChartContainer").offsetWidth;
         const multiplier = Math.max(width / 800, 1);
         const isWide = width > 600;
 
@@ -102,13 +100,13 @@
                     { x: "2016-01-01", y: "1200" },
                     { x: "2017-01-01", y: "1989.64" },
                     { x: "2018-01-01", y: "2089.13" },
-                    { x: "2019-01-01", y: "2188.57" },
-                    { x: "2020-01-01", y: "2387.51" },
-                    { x: "2021-01-01", y: "2586.39" },
-                    { x: "2022-01-01", y: "3444.56" },
+                    { x: "2019-01-01", y: "2189.05" },
+                    { x: "2020-01-01", y: "2387.63" },
+                    { x: "2021-01-01", y: "2586.15" },
+                    { x: "2022-01-01", y: "3444.86" },
                     { x: "2022-03-01", y: "14105" },
-                    { x: "2022-09-27", y: "3444.56" },
-                    { x: "2023-01-01", y: "3854.39" },
+                    { x: "2022-09-27", y: "3444.86" },
+                    { x: "2023-01-01", y: "3853.63" },
                     { x: "2024-01-01", y: "15962.08" },
                     { x: "2025-01-01", y: "18538.00" },
                 ],

@@ -11,70 +11,68 @@
 </head>
 
 <body>
-    <div id="chartContainer">
+    <div id="szhGoatChartContainer">
         <div>
-            <h1 style="margin: 0; line-height: 1.1">Changing wages for goat herders</h1>
-            <p style="margin-top: 8px">Minimum monthly wage for California goat herders working 24/7 at company with 25 employees or less</p>
+            <div><span style="font-family: Noto Serif, serif; font-size: 24px; font-weight: 700; line-height: 1.1">Changing wages for goat herders</span></div>
+            <div style="color: #666; margin-top: 8px"><span>Minimum monthly wage for California goat herders working 24/7 at company with 25 employees or less</span></div>
         </div>
-        <canvas id="myChart"></canvas>
-        <div class="grid" style="grid-template-columns: auto auto; margin-top: 8px">
-            <div style="color: #003f5c" class="label">
-                <p>Sept. 2016</p>
-                <p>AB 1066 passed</p>
-                <p>Gradual increases from $1,200</p>
+        <canvas id="szhGoatChart"></canvas>
+        <div class="szhGoatGrid" style="grid-template-columns: auto auto; margin-top: 8px">
+            <div style="color: #003f5c" class="szhGoatLabel">
+                <div><span>Sept. 2016</span></div>
+                <div><span>AB 1066 passed</span></div>
+                <div><span>Gradual increases from $1,200</span></div>
             </div>
-            <div style="color: #7a5195" class="label">
-                <p>March 2022</p>
-                <p>EDD changes herder classification</p>
-                <p>$14,105</p>
+            <div style="color: #7a5195" class="szhGoatLabel">
+                <div><span>March 2022</span></div>
+                <div><span>EDD changes herder classification</span></div>
+                <div><span>$14,105</span></div>
             </div>
-            <div style="color: #ef5675" class="label">
-                <p>Sept. 2022</p>
-                <p>AB 156 passed</p>
-                <p>Back to $3,444.56</p>
+            <div style="color: #ef5675" class="szhGoatLabel">
+                <div><span>Sept. 2022</span></div>
+                <div><span>AB 156 passed</span></div>
+                <div><span>Back to $3,444.56</span></div>
             </div>
-            <div style="color: #ffa600" class="label">
-                <p>Jan. 2024</p>
-                <p>AB 156 section expires</p>
-                <p>$15,952.08</p>
+            <div style="color: #ffa600" class="szhGoatLabel">
+                <div><span>Jan. 2024</span></div>
+                <div><span>AB 156 section expires</span></div>
+                <div><span>$15,952.08</span></div>
             </div>
         </div>
-        <p style="opacity: .5; font-size: 12px">Sources: <a style="color: #000" href="https://www.dir.ca.gov/dlse/Sheepherders-owed-as-a-result-of-AB-1066s-Overtime-Phase-In.html">Department of Industrial Relations</a>, spokesperson comment. Graphic by Samson Zhang</p>
+        <div style="margin-top: 8px; line-height: 1.1"><span style="color: #666; font-size: 12px">Source: <a style="color: #666" href="https://www.dir.ca.gov/dlse/Sheepherders-owed-as-a-result-of-AB-1066s-Overtime-Phase-In.html">Department of Industrial Relations</a>. Graphic by Samson Zhang</span></div>
     </div>
-    <style>body {
+    <style>#szhGoatChartContainer {
+  margin: 32px 0;
   font-family: Noto Sans, sans-serif;
+  line-height: normal;
 }
 
-.grid {
+.szhGoatGrid {
   display: grid;
 }
 
 @media (width >= 600px) {
-  .grid {
+  .szhGoatGrid {
     display: none;
   }
 }
 
-.label {
+.szhGoatLabel {
   margin: 8px 0;
 }
 
-.label p {
-  margin: 0;
-}
-
-.label p:first-of-type {
+.szhGoatLabel div:first-of-type {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 300;
 }
 
-.label p:nth-of-type(2) {
+.szhGoatLabel div:nth-of-type(2) {
   font-size: 16px;
   font-weight: 600;
 }
 
-.label p:nth-of-type(3) {
+.szhGoatLabel div:nth-of-type(3) {
   font-style: "italic";
   font-size: 12px;
 }
@@ -224,14 +222,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"1vSYO":[function(require,module,exports) {
+})({"lDlI2":[function(require,module,exports) {
 "use strict";
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "e046961e72b79fd5";
+module.bundle.HMR_BUNDLE_ID = "4e1ee0fe46706403";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
@@ -613,15 +611,15 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"j6O8L":[function(require,module,exports) {
+},{}],"c4WBy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _chartJs = require("chart.js");
 var _chartjsAdapterDateFns = require("chartjs-adapter-date-fns");
 var _locale = require("date-fns/locale");
 var _chartjsPluginAnnotation = require("chartjs-plugin-annotation");
 var _chartjsPluginAnnotationDefault = parcelHelpers.interopDefault(_chartjsPluginAnnotation);
-const ctx = document.getElementById("myChart");
-const width = document.getElementById("chartContainer").offsetWidth;
+const ctx = document.getElementById("szhGoatChart");
+const width = document.getElementById("szhGoatChartContainer").offsetWidth;
 const multiplier = Math.max(width / 800, 1);
 const isWide = width > 600;
 const data = {
@@ -643,19 +641,19 @@ const data = {
                 },
                 {
                     x: "2019-01-01",
-                    y: "2188.57"
+                    y: "2189.05"
                 },
                 {
                     x: "2020-01-01",
-                    y: "2387.51"
+                    y: "2387.63"
                 },
                 {
                     x: "2021-01-01",
-                    y: "2586.39"
+                    y: "2586.15"
                 },
                 {
                     x: "2022-01-01",
-                    y: "3444.56"
+                    y: "3444.86"
                 },
                 {
                     x: "2022-03-01",
@@ -663,11 +661,11 @@ const data = {
                 },
                 {
                     x: "2022-09-27",
-                    y: "3444.56"
+                    y: "3444.86"
                 },
                 {
                     x: "2023-01-01",
-                    y: "3854.39"
+                    y: "3853.63"
                 },
                 {
                     x: "2024-01-01",
@@ -903,143 +901,7 @@ new (0, _chartJs.Chart)(ctx, {
     }
 });
 
-},{"chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","chart.js":"ipU8D"}],"hmLQz":[function(require,module,exports) {
-/*!
- * chartjs-adapter-date-fns v3.0.0
- * https://www.chartjs.org
- * (c) 2022 chartjs-adapter-date-fns Contributors
- * Released under the MIT license
- */ var _chartJs = require("chart.js");
-var _dateFns = require("date-fns");
-const FORMATS = {
-    datetime: "MMM d, yyyy, h:mm:ss aaaa",
-    millisecond: "h:mm:ss.SSS aaaa",
-    second: "h:mm:ss aaaa",
-    minute: "h:mm aaaa",
-    hour: "ha",
-    day: "MMM d",
-    week: "PP",
-    month: "MMM yyyy",
-    quarter: "qqq - yyyy",
-    year: "yyyy"
-};
-(0, _chartJs._adapters)._date.override({
-    _id: "date-fns",
-    formats: function() {
-        return FORMATS;
-    },
-    parse: function(value, fmt) {
-        if (value === null || typeof value === "undefined") return null;
-        const type = typeof value;
-        if (type === "number" || value instanceof Date) value = (0, _dateFns.toDate)(value);
-        else if (type === "string") {
-            if (typeof fmt === "string") value = (0, _dateFns.parse)(value, fmt, new Date(), this.options);
-            else value = (0, _dateFns.parseISO)(value, this.options);
-        }
-        return (0, _dateFns.isValid)(value) ? value.getTime() : null;
-    },
-    format: function(time, fmt) {
-        return (0, _dateFns.format)(time, fmt, this.options);
-    },
-    add: function(time, amount, unit) {
-        switch(unit){
-            case "millisecond":
-                return (0, _dateFns.addMilliseconds)(time, amount);
-            case "second":
-                return (0, _dateFns.addSeconds)(time, amount);
-            case "minute":
-                return (0, _dateFns.addMinutes)(time, amount);
-            case "hour":
-                return (0, _dateFns.addHours)(time, amount);
-            case "day":
-                return (0, _dateFns.addDays)(time, amount);
-            case "week":
-                return (0, _dateFns.addWeeks)(time, amount);
-            case "month":
-                return (0, _dateFns.addMonths)(time, amount);
-            case "quarter":
-                return (0, _dateFns.addQuarters)(time, amount);
-            case "year":
-                return (0, _dateFns.addYears)(time, amount);
-            default:
-                return time;
-        }
-    },
-    diff: function(max, min, unit) {
-        switch(unit){
-            case "millisecond":
-                return (0, _dateFns.differenceInMilliseconds)(max, min);
-            case "second":
-                return (0, _dateFns.differenceInSeconds)(max, min);
-            case "minute":
-                return (0, _dateFns.differenceInMinutes)(max, min);
-            case "hour":
-                return (0, _dateFns.differenceInHours)(max, min);
-            case "day":
-                return (0, _dateFns.differenceInDays)(max, min);
-            case "week":
-                return (0, _dateFns.differenceInWeeks)(max, min);
-            case "month":
-                return (0, _dateFns.differenceInMonths)(max, min);
-            case "quarter":
-                return (0, _dateFns.differenceInQuarters)(max, min);
-            case "year":
-                return (0, _dateFns.differenceInYears)(max, min);
-            default:
-                return 0;
-        }
-    },
-    startOf: function(time, unit, weekday) {
-        switch(unit){
-            case "second":
-                return (0, _dateFns.startOfSecond)(time);
-            case "minute":
-                return (0, _dateFns.startOfMinute)(time);
-            case "hour":
-                return (0, _dateFns.startOfHour)(time);
-            case "day":
-                return (0, _dateFns.startOfDay)(time);
-            case "week":
-                return (0, _dateFns.startOfWeek)(time);
-            case "isoWeek":
-                return (0, _dateFns.startOfWeek)(time, {
-                    weekStartsOn: +weekday
-                });
-            case "month":
-                return (0, _dateFns.startOfMonth)(time);
-            case "quarter":
-                return (0, _dateFns.startOfQuarter)(time);
-            case "year":
-                return (0, _dateFns.startOfYear)(time);
-            default:
-                return time;
-        }
-    },
-    endOf: function(time, unit) {
-        switch(unit){
-            case "second":
-                return (0, _dateFns.endOfSecond)(time);
-            case "minute":
-                return (0, _dateFns.endOfMinute)(time);
-            case "hour":
-                return (0, _dateFns.endOfHour)(time);
-            case "day":
-                return (0, _dateFns.endOfDay)(time);
-            case "week":
-                return (0, _dateFns.endOfWeek)(time);
-            case "month":
-                return (0, _dateFns.endOfMonth)(time);
-            case "quarter":
-                return (0, _dateFns.endOfQuarter)(time);
-            case "year":
-                return (0, _dateFns.endOfYear)(time);
-            default:
-                return time;
-        }
-    }
-});
-
-},{"chart.js":"ipU8D","date-fns":"9yHCA"}],"ipU8D":[function(require,module,exports) {
+},{"chart.js":"ipU8D","chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ipU8D":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Animation", ()=>Animation);
@@ -14449,7 +14311,143 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"9yHCA":[function(require,module,exports) {
+},{}],"hmLQz":[function(require,module,exports) {
+/*!
+ * chartjs-adapter-date-fns v3.0.0
+ * https://www.chartjs.org
+ * (c) 2022 chartjs-adapter-date-fns Contributors
+ * Released under the MIT license
+ */ var _chartJs = require("chart.js");
+var _dateFns = require("date-fns");
+const FORMATS = {
+    datetime: "MMM d, yyyy, h:mm:ss aaaa",
+    millisecond: "h:mm:ss.SSS aaaa",
+    second: "h:mm:ss aaaa",
+    minute: "h:mm aaaa",
+    hour: "ha",
+    day: "MMM d",
+    week: "PP",
+    month: "MMM yyyy",
+    quarter: "qqq - yyyy",
+    year: "yyyy"
+};
+(0, _chartJs._adapters)._date.override({
+    _id: "date-fns",
+    formats: function() {
+        return FORMATS;
+    },
+    parse: function(value, fmt) {
+        if (value === null || typeof value === "undefined") return null;
+        const type = typeof value;
+        if (type === "number" || value instanceof Date) value = (0, _dateFns.toDate)(value);
+        else if (type === "string") {
+            if (typeof fmt === "string") value = (0, _dateFns.parse)(value, fmt, new Date(), this.options);
+            else value = (0, _dateFns.parseISO)(value, this.options);
+        }
+        return (0, _dateFns.isValid)(value) ? value.getTime() : null;
+    },
+    format: function(time, fmt) {
+        return (0, _dateFns.format)(time, fmt, this.options);
+    },
+    add: function(time, amount, unit) {
+        switch(unit){
+            case "millisecond":
+                return (0, _dateFns.addMilliseconds)(time, amount);
+            case "second":
+                return (0, _dateFns.addSeconds)(time, amount);
+            case "minute":
+                return (0, _dateFns.addMinutes)(time, amount);
+            case "hour":
+                return (0, _dateFns.addHours)(time, amount);
+            case "day":
+                return (0, _dateFns.addDays)(time, amount);
+            case "week":
+                return (0, _dateFns.addWeeks)(time, amount);
+            case "month":
+                return (0, _dateFns.addMonths)(time, amount);
+            case "quarter":
+                return (0, _dateFns.addQuarters)(time, amount);
+            case "year":
+                return (0, _dateFns.addYears)(time, amount);
+            default:
+                return time;
+        }
+    },
+    diff: function(max, min, unit) {
+        switch(unit){
+            case "millisecond":
+                return (0, _dateFns.differenceInMilliseconds)(max, min);
+            case "second":
+                return (0, _dateFns.differenceInSeconds)(max, min);
+            case "minute":
+                return (0, _dateFns.differenceInMinutes)(max, min);
+            case "hour":
+                return (0, _dateFns.differenceInHours)(max, min);
+            case "day":
+                return (0, _dateFns.differenceInDays)(max, min);
+            case "week":
+                return (0, _dateFns.differenceInWeeks)(max, min);
+            case "month":
+                return (0, _dateFns.differenceInMonths)(max, min);
+            case "quarter":
+                return (0, _dateFns.differenceInQuarters)(max, min);
+            case "year":
+                return (0, _dateFns.differenceInYears)(max, min);
+            default:
+                return 0;
+        }
+    },
+    startOf: function(time, unit, weekday) {
+        switch(unit){
+            case "second":
+                return (0, _dateFns.startOfSecond)(time);
+            case "minute":
+                return (0, _dateFns.startOfMinute)(time);
+            case "hour":
+                return (0, _dateFns.startOfHour)(time);
+            case "day":
+                return (0, _dateFns.startOfDay)(time);
+            case "week":
+                return (0, _dateFns.startOfWeek)(time);
+            case "isoWeek":
+                return (0, _dateFns.startOfWeek)(time, {
+                    weekStartsOn: +weekday
+                });
+            case "month":
+                return (0, _dateFns.startOfMonth)(time);
+            case "quarter":
+                return (0, _dateFns.startOfQuarter)(time);
+            case "year":
+                return (0, _dateFns.startOfYear)(time);
+            default:
+                return time;
+        }
+    },
+    endOf: function(time, unit) {
+        switch(unit){
+            case "second":
+                return (0, _dateFns.endOfSecond)(time);
+            case "minute":
+                return (0, _dateFns.endOfMinute)(time);
+            case "hour":
+                return (0, _dateFns.endOfHour)(time);
+            case "day":
+                return (0, _dateFns.endOfDay)(time);
+            case "week":
+                return (0, _dateFns.endOfWeek)(time);
+            case "month":
+                return (0, _dateFns.endOfMonth)(time);
+            case "quarter":
+                return (0, _dateFns.endOfQuarter)(time);
+            case "year":
+                return (0, _dateFns.endOfYear)(time);
+            default:
+                return time;
+        }
+    }
+});
+
+},{"chart.js":"ipU8D","date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
@@ -24954,7 +24952,7 @@ parcelHelpers.export(exports, "valueOrDefault", ()=>(0, _helpersSegmentJs.v));
 var _color = require("@kurkle/color");
 var _helpersSegmentJs = require("./chunks/helpers.segment.js");
 
-},{"@kurkle/color":"2aojw","./chunks/helpers.segment.js":"7oQuk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1vSYO","j6O8L"], "j6O8L", "parcelRequired149")
+},{"@kurkle/color":"2aojw","./chunks/helpers.segment.js":"7oQuk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["lDlI2","c4WBy"], "c4WBy", "parcelRequired149")
 
 </script>
 </body>
