@@ -160,6 +160,7 @@
         });
 
         const usd = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", maximumSignificantDigits: 3});
+        const usdTooltip = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
 
         new Chart(ctx, {
             type: "line",
@@ -205,7 +206,7 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: context => "Monthly minimum wage: " + usd.format(context.parsed.y),
+                            label: context => "Monthly minimum wage: " + usdTooltip.format(context.parsed.y),
                             title: context => format(new Date(context[0].parsed.x), "MMM d, yyyy"),
                         }
                     },
@@ -267,7 +268,7 @@
                                 ...labelOptions,
                                 xValue: "2022-09-27",
                                 yValue: 3444.56,
-                                content: ["SEPT. 2022", "AB 156 passed", "Back to $3,444.56"],
+                                content: ["SEPT. 2022", "AB 156 passed", "Back to $3,444.86"],
                                 ...changeLabelOptions(2),
                                 display: isWide,
                             },

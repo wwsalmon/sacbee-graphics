@@ -736,6 +736,10 @@ const usd = new Intl.NumberFormat("en-US", {
     currency: "USD",
     maximumSignificantDigits: 3
 });
+const usdTooltip = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+});
 new (0, _chartJs.Chart)(ctx, {
     type: "line",
     data: data,
@@ -782,7 +786,7 @@ new (0, _chartJs.Chart)(ctx, {
             },
             tooltip: {
                 callbacks: {
-                    label: (context)=>"Monthly minimum wage: " + usd.format(context.parsed.y),
+                    label: (context)=>"Monthly minimum wage: " + usdTooltip.format(context.parsed.y),
                     title: (context)=>(0, _dateFns.format)(new Date(context[0].parsed.x), "MMM d, yyyy")
                 }
             },
@@ -858,7 +862,7 @@ new (0, _chartJs.Chart)(ctx, {
                         content: [
                             "SEPT. 2022",
                             "AB 156 passed",
-                            "Back to $3,444.56"
+                            "Back to $3,444.86"
                         ],
                         ...changeLabelOptions(2),
                         display: isWide
