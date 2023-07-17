@@ -78,8 +78,14 @@
     </style>
     <script type="module">
 
-
-        import Chart from "chart.js/auto";
+        import {
+            Chart,
+            LineController,
+            TimeScale,
+            LinearScale,
+            PointElement,
+            LineElement,
+        } from "chart.js";
         import "chartjs-adapter-date-fns";
         import { enUS } from "date-fns/locale";
         import annotationPlugin from "chartjs-plugin-annotation";
@@ -114,7 +120,7 @@
 
         const colors = ["#003f5c", "#7a5195", "#ef5675", "#ffa600"];
 
-        Chart.register(annotationPlugin);
+        Chart.register(annotationPlugin, LineController, TimeScale, LinearScale, PointElement, LineElement);
 
         Chart.defaults.font.family = "'Noto Sans', sans-serif";
 

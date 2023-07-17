@@ -615,8 +615,7 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"j6O8L":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _auto = require("chart.js/auto");
-var _autoDefault = parcelHelpers.interopDefault(_auto);
+var _chartJs = require("chart.js");
 var _chartjsAdapterDateFns = require("chartjs-adapter-date-fns");
 var _locale = require("date-fns/locale");
 var _chartjsPluginAnnotation = require("chartjs-plugin-annotation");
@@ -691,8 +690,8 @@ const colors = [
     "#ef5675",
     "#ffa600"
 ];
-(0, _autoDefault.default).register((0, _chartjsPluginAnnotationDefault.default));
-(0, _autoDefault.default).defaults.font.family = "'Noto Sans', sans-serif";
+(0, _chartJs.Chart).register((0, _chartjsPluginAnnotationDefault.default), (0, _chartJs.LineController), (0, _chartJs.TimeScale), (0, _chartJs.LinearScale), (0, _chartJs.PointElement), (0, _chartJs.LineElement));
+(0, _chartJs.Chart).defaults.font.family = "'Noto Sans', sans-serif";
 const lineOptions = (index)=>({
         type: "line",
         borderColor: colors[index],
@@ -738,7 +737,7 @@ const usd = new Intl.NumberFormat("en-US", {
     currency: "USD",
     maximumSignificantDigits: 3
 });
-new (0, _autoDefault.default)(ctx, {
+new (0, _chartJs.Chart)(ctx, {
     type: "line",
     data: data,
     options: {
@@ -904,15 +903,143 @@ new (0, _autoDefault.default)(ctx, {
     }
 });
 
-},{"chart.js/auto":"d8NN9","chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8NN9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _chartJs = require("../dist/chart.js");
-parcelHelpers.exportAll(_chartJs, exports);
-(0, _chartJs.Chart).register(...(0, _chartJs.registerables));
-exports.default = (0, _chartJs.Chart);
+},{"chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","chart.js":"ipU8D"}],"hmLQz":[function(require,module,exports) {
+/*!
+ * chartjs-adapter-date-fns v3.0.0
+ * https://www.chartjs.org
+ * (c) 2022 chartjs-adapter-date-fns Contributors
+ * Released under the MIT license
+ */ var _chartJs = require("chart.js");
+var _dateFns = require("date-fns");
+const FORMATS = {
+    datetime: "MMM d, yyyy, h:mm:ss aaaa",
+    millisecond: "h:mm:ss.SSS aaaa",
+    second: "h:mm:ss aaaa",
+    minute: "h:mm aaaa",
+    hour: "ha",
+    day: "MMM d",
+    week: "PP",
+    month: "MMM yyyy",
+    quarter: "qqq - yyyy",
+    year: "yyyy"
+};
+(0, _chartJs._adapters)._date.override({
+    _id: "date-fns",
+    formats: function() {
+        return FORMATS;
+    },
+    parse: function(value, fmt) {
+        if (value === null || typeof value === "undefined") return null;
+        const type = typeof value;
+        if (type === "number" || value instanceof Date) value = (0, _dateFns.toDate)(value);
+        else if (type === "string") {
+            if (typeof fmt === "string") value = (0, _dateFns.parse)(value, fmt, new Date(), this.options);
+            else value = (0, _dateFns.parseISO)(value, this.options);
+        }
+        return (0, _dateFns.isValid)(value) ? value.getTime() : null;
+    },
+    format: function(time, fmt) {
+        return (0, _dateFns.format)(time, fmt, this.options);
+    },
+    add: function(time, amount, unit) {
+        switch(unit){
+            case "millisecond":
+                return (0, _dateFns.addMilliseconds)(time, amount);
+            case "second":
+                return (0, _dateFns.addSeconds)(time, amount);
+            case "minute":
+                return (0, _dateFns.addMinutes)(time, amount);
+            case "hour":
+                return (0, _dateFns.addHours)(time, amount);
+            case "day":
+                return (0, _dateFns.addDays)(time, amount);
+            case "week":
+                return (0, _dateFns.addWeeks)(time, amount);
+            case "month":
+                return (0, _dateFns.addMonths)(time, amount);
+            case "quarter":
+                return (0, _dateFns.addQuarters)(time, amount);
+            case "year":
+                return (0, _dateFns.addYears)(time, amount);
+            default:
+                return time;
+        }
+    },
+    diff: function(max, min, unit) {
+        switch(unit){
+            case "millisecond":
+                return (0, _dateFns.differenceInMilliseconds)(max, min);
+            case "second":
+                return (0, _dateFns.differenceInSeconds)(max, min);
+            case "minute":
+                return (0, _dateFns.differenceInMinutes)(max, min);
+            case "hour":
+                return (0, _dateFns.differenceInHours)(max, min);
+            case "day":
+                return (0, _dateFns.differenceInDays)(max, min);
+            case "week":
+                return (0, _dateFns.differenceInWeeks)(max, min);
+            case "month":
+                return (0, _dateFns.differenceInMonths)(max, min);
+            case "quarter":
+                return (0, _dateFns.differenceInQuarters)(max, min);
+            case "year":
+                return (0, _dateFns.differenceInYears)(max, min);
+            default:
+                return 0;
+        }
+    },
+    startOf: function(time, unit, weekday) {
+        switch(unit){
+            case "second":
+                return (0, _dateFns.startOfSecond)(time);
+            case "minute":
+                return (0, _dateFns.startOfMinute)(time);
+            case "hour":
+                return (0, _dateFns.startOfHour)(time);
+            case "day":
+                return (0, _dateFns.startOfDay)(time);
+            case "week":
+                return (0, _dateFns.startOfWeek)(time);
+            case "isoWeek":
+                return (0, _dateFns.startOfWeek)(time, {
+                    weekStartsOn: +weekday
+                });
+            case "month":
+                return (0, _dateFns.startOfMonth)(time);
+            case "quarter":
+                return (0, _dateFns.startOfQuarter)(time);
+            case "year":
+                return (0, _dateFns.startOfYear)(time);
+            default:
+                return time;
+        }
+    },
+    endOf: function(time, unit) {
+        switch(unit){
+            case "second":
+                return (0, _dateFns.endOfSecond)(time);
+            case "minute":
+                return (0, _dateFns.endOfMinute)(time);
+            case "hour":
+                return (0, _dateFns.endOfHour)(time);
+            case "day":
+                return (0, _dateFns.endOfDay)(time);
+            case "week":
+                return (0, _dateFns.endOfWeek)(time);
+            case "month":
+                return (0, _dateFns.endOfMonth)(time);
+            case "quarter":
+                return (0, _dateFns.endOfQuarter)(time);
+            case "year":
+                return (0, _dateFns.endOfYear)(time);
+            default:
+                return time;
+        }
+    }
+});
 
-},{"../dist/chart.js":"ipU8D","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ipU8D":[function(require,module,exports) {
+},{"chart.js":"ipU8D","date-fns":"9yHCA"}],"ipU8D":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Animation", ()=>Animation);
@@ -14322,143 +14449,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"hmLQz":[function(require,module,exports) {
-/*!
- * chartjs-adapter-date-fns v3.0.0
- * https://www.chartjs.org
- * (c) 2022 chartjs-adapter-date-fns Contributors
- * Released under the MIT license
- */ var _chartJs = require("chart.js");
-var _dateFns = require("date-fns");
-const FORMATS = {
-    datetime: "MMM d, yyyy, h:mm:ss aaaa",
-    millisecond: "h:mm:ss.SSS aaaa",
-    second: "h:mm:ss aaaa",
-    minute: "h:mm aaaa",
-    hour: "ha",
-    day: "MMM d",
-    week: "PP",
-    month: "MMM yyyy",
-    quarter: "qqq - yyyy",
-    year: "yyyy"
-};
-(0, _chartJs._adapters)._date.override({
-    _id: "date-fns",
-    formats: function() {
-        return FORMATS;
-    },
-    parse: function(value, fmt) {
-        if (value === null || typeof value === "undefined") return null;
-        const type = typeof value;
-        if (type === "number" || value instanceof Date) value = (0, _dateFns.toDate)(value);
-        else if (type === "string") {
-            if (typeof fmt === "string") value = (0, _dateFns.parse)(value, fmt, new Date(), this.options);
-            else value = (0, _dateFns.parseISO)(value, this.options);
-        }
-        return (0, _dateFns.isValid)(value) ? value.getTime() : null;
-    },
-    format: function(time, fmt) {
-        return (0, _dateFns.format)(time, fmt, this.options);
-    },
-    add: function(time, amount, unit) {
-        switch(unit){
-            case "millisecond":
-                return (0, _dateFns.addMilliseconds)(time, amount);
-            case "second":
-                return (0, _dateFns.addSeconds)(time, amount);
-            case "minute":
-                return (0, _dateFns.addMinutes)(time, amount);
-            case "hour":
-                return (0, _dateFns.addHours)(time, amount);
-            case "day":
-                return (0, _dateFns.addDays)(time, amount);
-            case "week":
-                return (0, _dateFns.addWeeks)(time, amount);
-            case "month":
-                return (0, _dateFns.addMonths)(time, amount);
-            case "quarter":
-                return (0, _dateFns.addQuarters)(time, amount);
-            case "year":
-                return (0, _dateFns.addYears)(time, amount);
-            default:
-                return time;
-        }
-    },
-    diff: function(max, min, unit) {
-        switch(unit){
-            case "millisecond":
-                return (0, _dateFns.differenceInMilliseconds)(max, min);
-            case "second":
-                return (0, _dateFns.differenceInSeconds)(max, min);
-            case "minute":
-                return (0, _dateFns.differenceInMinutes)(max, min);
-            case "hour":
-                return (0, _dateFns.differenceInHours)(max, min);
-            case "day":
-                return (0, _dateFns.differenceInDays)(max, min);
-            case "week":
-                return (0, _dateFns.differenceInWeeks)(max, min);
-            case "month":
-                return (0, _dateFns.differenceInMonths)(max, min);
-            case "quarter":
-                return (0, _dateFns.differenceInQuarters)(max, min);
-            case "year":
-                return (0, _dateFns.differenceInYears)(max, min);
-            default:
-                return 0;
-        }
-    },
-    startOf: function(time, unit, weekday) {
-        switch(unit){
-            case "second":
-                return (0, _dateFns.startOfSecond)(time);
-            case "minute":
-                return (0, _dateFns.startOfMinute)(time);
-            case "hour":
-                return (0, _dateFns.startOfHour)(time);
-            case "day":
-                return (0, _dateFns.startOfDay)(time);
-            case "week":
-                return (0, _dateFns.startOfWeek)(time);
-            case "isoWeek":
-                return (0, _dateFns.startOfWeek)(time, {
-                    weekStartsOn: +weekday
-                });
-            case "month":
-                return (0, _dateFns.startOfMonth)(time);
-            case "quarter":
-                return (0, _dateFns.startOfQuarter)(time);
-            case "year":
-                return (0, _dateFns.startOfYear)(time);
-            default:
-                return time;
-        }
-    },
-    endOf: function(time, unit) {
-        switch(unit){
-            case "second":
-                return (0, _dateFns.endOfSecond)(time);
-            case "minute":
-                return (0, _dateFns.endOfMinute)(time);
-            case "hour":
-                return (0, _dateFns.endOfHour)(time);
-            case "day":
-                return (0, _dateFns.endOfDay)(time);
-            case "week":
-                return (0, _dateFns.endOfWeek)(time);
-            case "month":
-                return (0, _dateFns.endOfMonth)(time);
-            case "quarter":
-                return (0, _dateFns.endOfQuarter)(time);
-            case "year":
-                return (0, _dateFns.endOfYear)(time);
-            default:
-                return time;
-        }
-    }
-});
-
-},{"chart.js":"ipU8D","date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {
+},{}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
