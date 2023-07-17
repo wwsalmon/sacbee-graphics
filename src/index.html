@@ -5,18 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div>
+    <div id="chartContainer">
+        <div>
+            <h1 style="margin: 0; line-height: 1.1;">Voltaile wages for goat herders</h1>
+            <p style="margin-top: 8px;">Minimum monthly wage for California goat herders working 24/7 at company with 25 employees or less</p>
+        </div>
         <canvas id="myChart"></canvas>
+        <div class="grid" style="grid-template-columns: auto auto; margin-top: 8px;">
+            <div style="color: #003f5c;" class="label">
+                <p>Sept. 2016</p>
+                <p>AB 1066 passed</p>
+                <p>Gradual increases from $1,200</p>
+            </div>
+            <div style="color: #7a5195;" class="label">
+                <p>March 2022</p>
+                <p>EDD changes herder classification</p>
+                <p>$14,105</p>
+            </div>
+            <div style="color: #ef5675;" class="label">
+                <p>Sept. 2022</p>
+                <p>AB 156 passed</p>
+                <p>Back to $3,444.56</p>
+            </div>
+            <div style="color: #ffa600;" class="label">
+                <p>Jan. 2024</p>
+                <p>AB 156 section expires</p>
+                <p>$15,952.08</p>
+            </div>
+        </div>
+        <p style="opacity: 0.5; font-size: 12px;">Sources: <a style="color: black" href="https://www.dir.ca.gov/dlse/Sheepherders-owed-as-a-result-of-AB-1066s-Overtime-Phase-In.html">DIR website</a>, spokesperson comment. Graphic by Samson Zhang</p>
     </div>
+    <style>
+        body {
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        @media (min-width: 600px) {
+            .grid {
+                display: none;
+            }
+        }
+
+        .label {
+            margin: 8px 0;
+        }
+
+        .label p {
+            margin: 0;
+        }
+
+        .label p:first-of-type {
+            text-transform: uppercase; font-weight: 300; font-size: 12px;
+        }
+
+        .label p:nth-of-type(2) {
+            font-weight: 600; font-size: 16px;
+        }
+
+        .label p:nth-of-type(3) {
+            font-style: "italic"; font-size: 12px;
+        }
+    </style>
     <script type="module">
+
+
         import Chart from "chart.js/auto";
         import "chartjs-adapter-date-fns";
-        import {enUS} from "date-fns/locale";
+        import { enUS } from "date-fns/locale";
+        import annotationPlugin from "chartjs-plugin-annotation";
 
         const ctx = document.getElementById("myChart");
+        const width = document.getElementById("chartContainer").offsetWidth;
+        const multiplier = Math.max(width / 800, 1);
+        const isWide = width > 600;
 
         const data = {
             datasets: [{
@@ -36,8 +107,53 @@
                     { x: "2025-01-01", y: "18538.00" },
                 ],
                 stepped: true,
+                borderColor: "#999",
+                borderWidth: 3,
             }]
         };
+
+        const colors = ["#003f5c", "#7a5195", "#ef5675", "#ffa600"];
+
+        Chart.register(annotationPlugin);
+
+        Chart.defaults.font.family = "'Noto Sans', sans-serif";
+
+        const lineOptions = (index) => ({
+            type: "line",
+            borderColor: colors[index],
+            arrowHeads: {
+                end: {
+                    display: true,
+                    fill: true,
+                }
+            },
+            borderWidth: 3,
+        });
+
+        const labelOptions = {
+            type: "label",
+            font: [
+                {size: 12 * (isWide ? multiplier : 1), weight: 300},
+                {size: 16 * (isWide ? multiplier : 1), weight: 600},
+                {size: 12 * (isWide ? multiplier : 1), style: "italic"},
+            ]
+        };
+
+        const changeLabelOptions = (index) => ({
+            position: "end",
+            textAlign: "right",
+            color: colors[index],
+            xAdjust: -16,
+        });
+
+        const circleOptions = (index) => ({
+            type: "point",
+            backgroundColor: colors[index],
+            radius: 5,
+            borderColor: "transparent",
+        });
+
+        const usd = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", maximumSignificantDigits: 3});
 
         new Chart(ctx, {
             type: "line",
@@ -50,6 +166,134 @@
                             date: {
                                 locale: enUS,
                             }
+                        },
+                        time: {
+                            unit: "year",
+                            displayFormats: {
+                                year: "yyyy"
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            drawTicks: false,
+                        }
+                    },
+                    y: {
+                        position: "right",
+                        grid: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: "Monthly minimum wage",
+                            font: {size: 12 * multiplier}
+                        },
+                        ticks: {
+                            callback: (value, index, ticks) => usd.format(value),
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    annotation: {
+                        annotations: {
+                            // title: {
+                            //     type: "label",
+                            //     content: ["Volatile wages for goat herders", "Minimum monthly wage for California goat herders", "working 24/7 at company with 25 employees or less"],
+                            //     font: [{size: 24 * multiplier, family: "'Noto Serif', serif", weight: 700}, {size: 12 * multiplier}],
+                            //     textAlign: "start",
+                            //     xValue: "2016-01-01",
+                            //     yValue: 20000,
+                            //     position: "start",
+                            //     display: isWide,
+                            // },
+                            line1: {
+                                xMin: "2016-09-12",
+                                xMax: "2016-09-12",
+                                type: "line",
+                                borderColor: colors[0],
+                                borderDash: [6, 6],
+                                borderWidth: 3,
+                            },
+                            label1: {
+                                ...labelOptions,
+                                xValue: "2016-09-12",
+                                yValue: isWide ? 8000 : 12000,
+                                content: ["SEPT. 2016", "AB 1066 passed", "Gradual increases from $1,200"],
+                                position: "start",
+                                textAlign: "left",
+                                color: colors[0],
+                                xAdjust: 16,
+                                display: isWide,
+                            },
+                            circle1: {
+                                xValue: "2016-09-12",
+                                yValue: 1200,
+                                ...circleOptions(0),
+                            },
+                            line2: {
+                                xMin: "2022-03-01",
+                                xMax: "2022-03-01",
+                                yMin: 3444.56,
+                                yMax: 14105,
+                                ...lineOptions(1),
+                            },
+                            label2: {
+                                ...labelOptions,
+                                xValue: "2022-03-01",
+                                yValue: 12105,
+                                content: ["MARCH 2022", "EDD changes herder classification", "$14,105"],
+                                ...changeLabelOptions(1),
+                                display: isWide,
+                            },
+                            circle2: {
+                                xValue: "2022-03-01",
+                                yValue: 14105,
+                                ...circleOptions(1),
+                            },
+                            line3: {
+                                xMin: "2022-09-27",
+                                xMax: "2022-09-27",
+                                yMin: 14105,
+                                yMax: 3444.56,
+                                ...lineOptions(2),
+                                borderColor: colors[2],
+                            },
+                            label3: {
+                                ...labelOptions,
+                                xValue: "2022-09-27",
+                                yValue: 3444.56,
+                                content: ["SEPT. 2022", "AB 156 passed", "Back to $3,444.56"],
+                                ...changeLabelOptions(2),
+                                display: isWide,
+                            },
+                            circle3: {
+                                xValue: "2022-09-27",
+                                yValue: 3444.56,
+                                ...circleOptions(2),
+                            },
+                            line4: {
+                                xMin: "2024-01-01",
+                                xMax: "2024-01-01",
+                                yMin: 3854.39,
+                                yMax: 15962.08,
+                                ...lineOptions(3),
+                            },
+                            label4: {
+                                ...labelOptions,
+                                xValue: "2024-01-01",
+                                yValue: 14952.08,
+                                content: ["JAN. 2024", "AB 156 section expires", "$15,952.08"],
+                                ...changeLabelOptions(3),
+                                display: isWide,
+                            },
+                            circle4: {
+                                xValue: "2024-01-01",
+                                yValue: 15952.08,
+                                ...circleOptions(3),
+                            },
                         }
                     }
                 }
