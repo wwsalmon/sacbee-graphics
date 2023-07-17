@@ -31,7 +31,7 @@
             <div style="color: #ef5675" class="szhGoatLabel">
                 <div><span>Sept. 2022</span></div>
                 <div><span>AB 156 passed</span></div>
-                <div><span>Back to $3,444.56</span></div>
+                <div><span>Back to $3,444.86</span></div>
             </div>
             <div style="color: #ffa600" class="szhGoatLabel">
                 <div><span>Jan. 2024</span></div>
@@ -616,6 +616,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _chartJs = require("chart.js");
 var _chartjsAdapterDateFns = require("chartjs-adapter-date-fns");
 var _locale = require("date-fns/locale");
+var _dateFns = require("date-fns");
 var _chartjsPluginAnnotation = require("chartjs-plugin-annotation");
 var _chartjsPluginAnnotationDefault = parcelHelpers.interopDefault(_chartjsPluginAnnotation);
 const ctx = document.getElementById("szhGoatChart");
@@ -688,7 +689,7 @@ const colors = [
     "#ef5675",
     "#ffa600"
 ];
-(0, _chartJs.Chart).register((0, _chartjsPluginAnnotationDefault.default), (0, _chartJs.LineController), (0, _chartJs.TimeScale), (0, _chartJs.LinearScale), (0, _chartJs.PointElement), (0, _chartJs.LineElement));
+(0, _chartJs.Chart).register((0, _chartjsPluginAnnotationDefault.default), (0, _chartJs.LineController), (0, _chartJs.TimeScale), (0, _chartJs.LinearScale), (0, _chartJs.PointElement), (0, _chartJs.LineElement), (0, _chartJs.Tooltip));
 (0, _chartJs.Chart).defaults.font.family = "'Noto Sans', sans-serif";
 const lineOptions = (index)=>({
         type: "line",
@@ -778,6 +779,12 @@ new (0, _chartJs.Chart)(ctx, {
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: (context)=>"Monthly minimum wage: " + usd.format(context.parsed.y),
+                    title: (context)=>(0, _dateFns.format)(new Date(context[0].parsed.x), "MMM d, yyyy")
+                }
             },
             annotation: {
                 annotations: {
@@ -901,7 +908,7 @@ new (0, _chartJs.Chart)(ctx, {
     }
 });
 
-},{"chart.js":"ipU8D","chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ipU8D":[function(require,module,exports) {
+},{"chart.js":"ipU8D","chartjs-adapter-date-fns":"hmLQz","date-fns/locale":"lASMG","chartjs-plugin-annotation":"5xmc5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","date-fns":"9yHCA"}],"ipU8D":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Animation", ()=>Animation);

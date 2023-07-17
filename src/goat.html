@@ -31,7 +31,7 @@
             <div style="color: #ef5675;" class="szhGoatLabel">
                 <div><span>Sept. 2022</span></div>
                 <div><span>AB 156 passed</span></div>
-                <div><span>Back to $3,444.56</span></div>
+                <div><span>Back to $3,444.86</span></div>
             </div>
             <div style="color: #ffa600;" class="szhGoatLabel">
                 <div><span>Jan. 2024</span></div>
@@ -83,9 +83,11 @@
             LinearScale,
             PointElement,
             LineElement,
+            Tooltip,
         } from "chart.js";
         import "chartjs-adapter-date-fns";
         import { enUS } from "date-fns/locale";
+        import { format } from "date-fns";
         import annotationPlugin from "chartjs-plugin-annotation";
 
         const ctx = document.getElementById("szhGoatChart");
@@ -118,7 +120,7 @@
 
         const colors = ["#003f5c", "#7a5195", "#ef5675", "#ffa600"];
 
-        Chart.register(annotationPlugin, LineController, TimeScale, LinearScale, PointElement, LineElement);
+        Chart.register(annotationPlugin, LineController, TimeScale, LinearScale, PointElement, LineElement, Tooltip);
 
         Chart.defaults.font.family = "'Noto Sans', sans-serif";
 
@@ -200,6 +202,12 @@
                 plugins: {
                     legend: {
                         display: false,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: context => "Monthly minimum wage: " + usd.format(context.parsed.y),
+                            title: context => format(new Date(context[0].parsed.x), "MMM d, yyyy"),
+                        }
                     },
                     annotation: {
                         annotations: {
