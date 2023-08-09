@@ -20,26 +20,51 @@
         <p>The Sacramento Community Police Review Commission hosted open meetings on July 27 and 29 to solicit community input before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at bit.ly/sacpd-military-feedback-2023.</p>
 
         <p>Here’s a breakdown of the SPD’s existing and requested military equipment.</p>
-
-        <p>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</p>
     </div>
-    <p></p>
     <div id="scrolly">
         <div id="scrolly-graphic">
-            <p>0</p>
+            <div id="container-m489">
+                <div><span>18 new M4-89 rifles</span></div>
+            </div>
+            <div id="container-m16" class="other-gun-container">
+                <div><span>322 Colt M16A1 rifles, converted to Semi-Automatic AR-15</span></div>
+            </div>
+            <div id="guns-col3">
+                <div id="container-6920" class="other-gun-container">
+                    <div><span>200 Colt 6920 Series patrol rifles</span></div>
+                </div>
+                <div id="container-icdi" class="other-gun-container">
+                    <div><span>19 LWRCI SWAT Operator Package IC DI 10.5” rifles</span></div>
+                </div>
+                <div id="container-mkii" class="other-gun-container">
+                    <div><span>2 LWRCI Rapid Engagement Precision Rifle MKII 7.62 MM 20”</span></div>
+                </div>
+                <div id="container-ar10" class="other-gun-container">
+                    <div><span>2 DPMS AR-10 LR-308 rifles</span></div>
+                </div>
+            </div>
         </div>
         <div id="scrolly-text">
-            <div class="step" data-step="1">
-                <div>STEP 1</div>
+            <div class="step">
+                <div>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</div>
             </div>
-            <div class="step" data-step="2">
-                <div>STEP 2</div>
+            <div class="step">
+                <div>SPD currently has 547 rifles defined by AB 481 as “military equipment.”</div>
             </div>
-            <div class="step" data-step="3">
-                <div>STEP 3</div>
+            <div class="step">
+                <div>Along with over 762,000 rounds of rifle ammunition, the equipment is worth over $787,000.</div>
             </div>
-            <div class="step" data-step="4">
-                <div>STEP 4</div>
+            <div class="step">
+                <div>Concerns about police brutality against protesters led to “less lethal” equipment like bean bag rounds fired from shotguns and projectiles containing tear gas and pepper spray, which can still cause serious injury and death, to be included as “military equipment” under AB 481.</div>
+            </div>
+            <div class="step">
+                <div>SPD’s arsenal includes 552 12-gauge shotguns and over 10,000 bean bag rounds, as well as over 6,000 “PepperBall” projectiles and 70 launchers.</div>
+            </div>
+            <div class="step">
+                <div>The most expensive items in SPD’s equipment are armored vehicles and command centers, including a $400,000 tracked vehicle called a “Rook” that the city council controversially approved its purchase earlier this year.</div>
+            </div>
+            <div class="step">
+                <div>SPD also has dozens of aerial drones and five robots, including two $250,000 Northrop Grumman-designed bomb disposal robots used in Iraq.</div>
             </div>
         </div>
     </div>
@@ -61,14 +86,15 @@
         }
 
         #scrolly-graphic {
-            position: fixed;
-            display: flex;
-            justify-items: center;
-            align-items: center;
+            position: sticky;
             width: 100%;
-            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100vh;
             top: 0;
             left: 0;
+            padding: 16px;
+            box-sizing: border-box;
         }
 
         #scrolly-graphic > p {
@@ -80,6 +106,8 @@
             justify-items: center;
             align-items: center;
             height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
         .step > div {
@@ -91,6 +119,50 @@
             max-width: 600px;
             width: 100%;
         }
+
+        #container-m489 {
+            display: inline-grid;
+            grid-template-columns: repeat(6, 1fr);
+            transition: opacity 0.5s ease, left 1s ease, top 1s ease, transform 1s ease, background-color 1s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 8px;
+        }
+
+        #container-m489 {
+            font-weight: bold;
+        }
+
+        .other-gun-container div {
+            opacity: 0.5;
+        }
+
+        #container-m489 div, .other-gun-container div {
+            grid-column: 1/-1;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        #container-m489 img {
+            width: 140px;
+            /* max-width: 100%; */
+            /* max-height: 33.33vh; */
+            transition: all 1s ease;
+        }
+
+        #guns-col3, #container-m16 {
+            position: absolute;
+        }
+
+        .other-gun-container {
+            display: inline-grid;
+            grid-template-columns: repeat(18, 1fr);
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            margin-bottom: 16px;
+        }
     </style>
     <script>
         const scroller = scrollama();
@@ -100,21 +172,69 @@
         const text = container.select("#scrolly-text");
         const step = text.selectAll(".step");
 
+        // guns
+        const containerM489 = graphic.select("#container-m489");
+        containerM489.selectAll("img").data(new Array(18).fill(0)).join("img").attr("src", "./meu-scroller/m489-turned.png");
+        
+        const containerM16 = graphic.select("#container-m16");
+        containerM16.selectAll("img").data(new Array(322).fill(0)).join("img").attr("src", "./meu-scroller/m16-turned.png");
+
+        const container6920 = graphic.select("#container-6920");
+        container6920.selectAll("img").data(new Array(200).fill(0)).join("img").attr("src", "./meu-scroller/6920-turned.png");
+
+        const containerICDI = graphic.select("#container-icdi");
+        containerICDI.selectAll("img").data(new Array(19).fill(0)).join("img").attr("src", "./meu-scroller/icdi-turned.png");
+
+        const containerMKII = graphic.select("#container-mkii");
+        containerMKII.selectAll("img").data(new Array(2).fill(0)).join("img").attr("src", "./meu-scroller/mkii-turned.png");
+
+        const containerAR10 = graphic.select("#container-ar10");
+        containerAR10.selectAll("img").data(new Array(2).fill(0)).join("img").attr("src", "./meu-scroller/ar10-turned.png");
+
+        const otherGunContainers = graphic.selectAll(".other-gun-container");
+        const gunsCol3 = graphic.select("#guns-col3");
+
         function handleResize() {
             scroller.resize();
         }
 
         scroller
-            .setup({ container: "#scrolly", graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5, debug: true })
+            .setup({ container: "#scrolly", graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5 })
             .onStepEnter((response) => {
                 console.log(response);
-                graphicText.text(response.index);
+                if (response.index === 0) {
+                    containerM489.style("transform", "translate(-50%,-50%)").style("top", "50%").style("left", "50%").style("opacity", 1).style("background-color", "transparent");
+                    containerM489.selectAll("img").style("width", "140px");
+                    otherGunContainers.style("opacity", 0);
+                } else if (response.index === 1) {
+                    loadAllGuns();
+                } else if (response.index === 2) {
+                    loadAllGuns();
+                } else if (response.index === 3) {
+                    containerM489.style("opacity", 0);
+                    otherGunContainers.style("opacity", 0);
+                }
+                // graphicText.text(response.index);
             })
             .onStepExit((response) => console.log(response));
 
         handleResize();
 
         window.addEventListener("resize", handleResize);
+
+        function loadAllGuns() {
+            const numPerRow = 18;
+            const margin = 2;
+            const leftMargin = 1 + 6 + margin + 1;
+            const outerWidth = graphic.node().getBoundingClientRect().width;
+            const numDivisions = leftMargin + numPerRow + 1 + numPerRow + 1;
+            const singleWidth = Math.floor(outerWidth / numDivisions);
+
+            containerM489.style("opacity", 1).style("background-color", "pink").style("left", singleWidth + "px").style("top", "16px").style("transform", "none").selectAll("img").style("width", singleWidth + "px");
+            containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+            gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+            otherGunContainers.style("opacity", 1);
+        }
     </script>
 </body>
 </html>
