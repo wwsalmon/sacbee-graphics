@@ -46,25 +46,36 @@
         </div>
         <div id="scrolly-text">
             <div class="step">
-                <div>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</div>
+                <div>
+                    The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.
+                    <div class="budget-graph" id="budget-graph-new"></div>
+                </div>
             </div>
             <div class="step">
                 <div>SPD currently has 547 rifles defined by AB 481 as “military equipment.”</div>
             </div>
             <div class="step">
-                <div>Along with over 762,000 rounds of rifle ammunition, the equipment is worth over $787,000.</div>
+                <div>Along with over 762,000 rounds of rifle ammunition, the equipment is worth over $787,000.
+                    <div class="budget-graph" id="budget-graph-rifles"></div>
+                </div>
             </div>
             <div class="step">
                 <div>Concerns about police brutality against protesters led to “less lethal” equipment like bean bag rounds fired from shotguns and projectiles containing tear gas and pepper spray, which can still cause serious injury and death, to be included as “military equipment” under AB 481.</div>
             </div>
             <div class="step">
-                <div>SPD’s arsenal includes 552 12-gauge shotguns and over 10,000 bean bag rounds, as well as over 6,000 “PepperBall” projectiles and 70 launchers.</div>
+                <div>SPD’s arsenal includes 552 12-gauge shotguns and over 10,000 bean bag rounds, as well as over 6,000 “PepperBall” projectiles and 70 launchers.
+                    <div class="budget-graph" id="budget-graph-less-lethal"></div>
+                </div>
             </div>
             <div class="step">
-                <div>The most expensive items in SPD’s equipment are armored vehicles and command centers, including a $400,000 tracked vehicle called a “Rook” that the city council controversially approved its purchase earlier this year.</div>
+                <div>The most expensive items in SPD’s equipment are armored vehicles and command centers, including a $400,000 tracked vehicle called a “Rook” that the city council controversially approved its purchase earlier this year.
+                    <div class="budget-graph" id="budget-graph-vehicles"></div>
+                </div>
             </div>
             <div class="step">
-                <div>SPD also has dozens of aerial drones and five robots, including two $250,000 Northrop Grumman-designed bomb disposal robots used in Iraq.</div>
+                <div>SPD also has dozens of aerial drones and five robots, including two $250,000 Northrop Grumman-designed bomb disposal robots used in Iraq.
+                    <div class="budget-graph" id="budget-graph-robots"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -163,6 +174,34 @@
             opacity: 0;
             margin-bottom: 16px;
         }
+
+        .budget-graph-bar {
+            height: 100%;
+            border-right: 1px solid white;
+            background-color: #eee;
+        }
+
+        .budget-graph-bar.past {
+            background-color: #D0E9FF;
+        }
+
+        .budget-graph-bar.active {
+            background-color: #155288;
+        }
+
+        .budget-graph-bar:not(.active):hover {
+            background-color: #222;
+        }
+
+        .budget-graph-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .budget-graph-bottom-label {
+            font-size: 14px;
+            opacity: 0.5;
+        }
     </style>
     <script>
         const scroller = scrollama();
@@ -235,6 +274,72 @@
             gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
             otherGunContainers.style("opacity", 1);
         }
+
+        const cost = [
+                {
+                    "label": "New equipment",
+                    "value": 361700
+                },
+                {
+                    "label": "Rifles and rifle ammunition",
+                    "value": 787359.21
+                },
+                {
+                    "label": "Less lethal and diversionary weapons",
+                    "value": 871232.99
+                },
+                {
+                    "label": "Armored vehicles and command centers",
+                    "value": 2009746.65
+                },
+                {
+                    "label": "Robots and unmanned aerial systems",
+                    "value": 820934
+                },
+                {
+                    "label": "Other",
+                    "value": 72140.92
+                }
+            ];
+
+        const costTotal = cost.reduce((a,b) => a + b.value, 0);
+
+        function makeGraph(selector, highlight) {
+            const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
+
+            const graph = d3.select(selector).style("margin-top", "16px");
+            const graphLabel = graph.append("div").append("span").attr("class", "budget-graph-label");
+            const graphBar = graph.append("div").style("display", "flex").style("height","32px").style("width","100%").style("margin", "8px 0");
+            const graphBottomLabel = graph.append("div").style("text-align","right").append("span").attr("class","budget-graph-bottom-label").text(formatter.format(costTotal) + " of equipment after new acquisitions");
+
+            const thisCost = cost.find(d => d.label === highlight).value;
+            const thisIndex = cost.findIndex(d => d.label === highlight);
+
+            function resetLabel() {
+                graphLabel.style("color", "#155288").text(`${highlight}: ${formatter.format(thisCost)} (${(thisCost / costTotal * 100).toFixed(1)}%)`);
+            }
+
+            resetLabel();
+
+            graphBar.selectAll(".budget-graph-bar")
+                .data(cost)
+                .join("div")
+                .attr("class", (d, i) => ("budget-graph-bar" + ((d.label === highlight) ? " active" : (i < thisIndex) ? " past" : "")))
+                .style("width", d => (d.value / costTotal * 100).toString() + "%")
+                .on("mouseenter", (e, d) => {
+                    if (d.label !== highlight) {
+                        const thisCost = cost.find(x => x.label === d.label).value;
+                        graphLabel.text(`${d.label}: ${formatter.format(thisCost)} (${(thisCost / costTotal * 100).toFixed(1)}%)`).style("color", "#222");
+                    }
+                })
+                .on("mouseleave", resetLabel);
+        }
+
+        makeGraph("#budget-graph-new", "New equipment");
+        makeGraph("#budget-graph-rifles", "Rifles and rifle ammunition");
+        makeGraph("#budget-graph-less-lethal", "Less lethal and diversionary weapons");
+        makeGraph("#budget-graph-vehicles", "Armored vehicles and command centers");
+        makeGraph("#budget-graph-robots", "Robots and unmanned aerial systems");
     </script>
 </body>
 </html>
