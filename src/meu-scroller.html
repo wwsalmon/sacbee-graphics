@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js" integrity="sha512-YE2BOLTLBOkZ10ahg304yD425ncH98QTjdCgfsjzAJB1tMHWeruT4BBrHL2FXfXLjFJqfsB7I7qhqxubPsT/dw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div style="margin: 0 auto; max-width: 728px; padding: 64px 0;">
+        <h1 style="font-family: Noto Serif, serif; text-align: center; line-height: 1.1;">Sac PD wants to add $360,000 in military equipment to $4.5 million arsenal, draft report says</h1>
+        <p>The Sacramento Police Department released draft reports on July 24 detailing the rifles, vehicles, drones and other “military equipment” in its inventory, as mandated by Assembly Bill 481, which Gov. Gavin Newsom signed into law in September 2021.</p>
+
+        <p>In addition to listing the department’s $4.5 million of existing equipment, the report also spelled out requests for $360,000 of new equipment, including 18 M4-89 rifles for the department’s SWAT team. AB 481 requires the department to receive approval from the city council to acquire new military equipment.</p>
+
+        <p>The Sacramento Community Police Review Commission hosted open meetings on July 27 and 29 to solicit community input before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at bit.ly/sacpd-military-feedback-2023.</p>
+
+        <p>Here’s a breakdown of the SPD’s existing and requested military equipment.</p>
+
+        <p>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</p>
+    </div>
+    <p></p>
+    <div id="scrolly">
+        <div id="scrolly-graphic">
+            <p>0</p>
+        </div>
+        <div id="scrolly-text">
+            <div class="step" data-step="1">
+                <div>STEP 1</div>
+            </div>
+            <div class="step" data-step="2">
+                <div>STEP 2</div>
+            </div>
+            <div class="step" data-step="3">
+                <div>STEP 3</div>
+            </div>
+            <div class="step" data-step="4">
+                <div>STEP 4</div>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 0 auto; max-width: 728px; padding: 64px 0;">
+        <p>The Sacramento Community Police Review Commission hosted open meetings on July 27 and 29 to solicit community input before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at bit.ly/sacpd-military-feedback-2023.</p>
+    
+        <p>Here’s a breakdown of the SPD’s existing and requested military equipment.</p>
+    
+        <p>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</p>
+    </div>
+    <style>
+        body {
+            font-family: "Noto Sans", sans-serif;
+            font-size: 18px;
+        }
+
+        #scrolly {
+            position: relative;
+        }
+
+        #scrolly-graphic {
+            position: fixed;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        #scrolly-graphic > p {
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .step > div {
+            padding: 16px;
+            background-color: white;
+            border: 1px solid #000;
+            margin: 0 auto;
+            min-width: 300px;
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        const scroller = scrollama();
+        const container = d3.select("#scrolly");
+        const graphic = container.select("#scrolly-graphic");
+        const graphicText = graphic.select("p");
+        const text = container.select("#scrolly-text");
+        const step = text.selectAll(".step");
+
+        function handleResize() {
+            scroller.resize();
+        }
+
+        scroller
+            .setup({ container: "#scrolly", graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5, debug: true })
+            .onStepEnter((response) => {
+                console.log(response);
+                graphicText.text(response.index);
+            })
+            .onStepExit((response) => console.log(response));
+
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+    </script>
+</body>
+</html>

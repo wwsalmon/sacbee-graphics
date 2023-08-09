@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooling centers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+</head>
+<body>
+    <div id="map"></div>
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
+    <script>
+        const data = [
+            {
+                name: "1725 28th Street, Sacramento, CA 95816",
+                coords: [38.5658898367347, -121.47254981632653],
+                hours: [
+                    {
+                        start: "2023-06-29T16:00:00.000Z",
+                        end: "2023-06-30T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-06-30T16:00:00.000Z",
+                        end: "2023-07-01T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-01T22:00:00.000Z",
+                        end: "2023-07-02T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-02T22:00:00.000Z",
+                        end: "2023-07-03T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-03T16:00:00.000Z",
+                        end: "2023-07-04T04:00:00.000Z",
+                    },
+                ]
+            },
+            {
+                name: "1725 28th Street, Sacramento, CA 95816",
+                coords: [38.5658898367347, -121.47254981632653],
+                hours: [
+                    {
+                        start: "2023-06-29T16:00:00.000Z",
+                        end: "2023-06-30T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-06-30T16:00:00.000Z",
+                        end: "2023-07-01T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-01T22:00:00.000Z",
+                        end: "2023-07-02T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-02T22:00:00.000Z",
+                        end: "2023-07-03T04:00:00.000Z",
+                    },
+                    {
+                        start: "2023-07-03T16:00:00.000Z",
+                        end: "2023-07-04T04:00:00.000Z",
+                    },
+                ]
+            }
+        ]
+
+        const map = L.map("map").setView([38.565995, -121.468039], 13);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "OpenStreetMap"
+        }).addTo(map);
+        const marker = L.marker([38.566, -121.468]).addTo(map);
+        marker.bindPopup("Hello world");
+    </script>
+</body>
+</html>
