@@ -23,6 +23,7 @@
     </div>
     <div id="scrolly">
         <div id="scrolly-graphic">
+            <!-- GUNS -->
             <div id="container-m489">
                 <div><span>18 new M4-89 rifles</span></div>
             </div>
@@ -41,6 +42,27 @@
                 </div>
                 <div id="container-ar10" class="other-gun-container">
                     <div><span>2 DPMS AR-10 LR-308 rifles</span></div>
+                </div>
+            </div>
+            <!-- LESS LETHAL -->
+            <div style="display: flex; align-items: center; justify-content: start; position: relative;" id="container-less-lethal-1">
+                <img src="./meu-scroller/shotgun-turned.png" alt="" style="width: 23.67%">
+                <img src="./meu-scroller/1425-turned.png" alt="" style="width: 16.8%; margin-left: 3%;">
+                <img src="./meu-scroller/pepperball-turned.png" alt="" style="width: 14.93%; margin-left: 3%;">
+                <img src="./meu-scroller/7290-2.png" alt="" style="width: 3%; margin-left: 9%">
+                <img src="./meu-scroller/1082.png" alt="" style="width: 3%; margin-left: 3%;">
+                <img src="./meu-scroller/1030.png" alt="" style="width: 3%; margin-left: 3%;">
+                <img src="./meu-scroller/sock.png" alt="" style="width: 5%; position: absolute; top: 50%; left: 15%">
+                <div style="position: absolute; top: 50%; left: 40%; display: flex; align-items: flex-end; gap: 1%; width: 100%;">
+                    <img src="./meu-scroller/6320.png" alt="" style="width: 1.5%">
+                    <img src="./meu-scroller/6325.png" alt="" style="width: 1.5%">
+                    <img src="./meu-scroller/2262.png" alt="" style="width: 1.5%">
+                </div>
+                <div style="position: absolute; top: 50%; left: 63%; display: grid; grid-template-columns: repeat(2,50%); grid-template-rows: repeat(2,50%); gap: 10%; width: 3%;">
+                    <img src="./meu-scroller/pepperball-1.png" alt="" style="width: 100%">
+                    <img src="./meu-scroller/pepperball-2.png" alt="" style="width: 100%">
+                    <img src="./meu-scroller/pepperball-3.png" alt="" style="width: 100%">
+                    <img src="./meu-scroller/pepperball-4.png" alt="" style="width: 100%">
                 </div>
             </div>
         </div>
@@ -203,6 +225,11 @@
             font-size: 14px;
             opacity: 0.5;
         }
+
+        #container-less-lethal-1 {
+            transition: opacity 0.2s ease;
+            height: 100%;
+        }
     </style>
     <script>
         const scroller = scrollama();
@@ -234,6 +261,10 @@
         const otherGunContainers = graphic.selectAll(".other-gun-container");
         const gunsCol3 = graphic.select("#guns-col3");
 
+        // less lethal
+
+        const containerLessLethal1 = graphic.select("#container-less-lethal-1");
+
         function handleResize() {
             scroller.resize();
         }
@@ -250,9 +281,15 @@
                     loadAllGuns();
                 } else if (response.index === 2) {
                     loadAllGuns();
-                } else if (response.index === 3) {
+                } else {
                     containerM489.style("opacity", 0);
                     otherGunContainers.style("opacity", 0);
+                }
+
+                if (response.index === 3) {
+                    containerLessLethal1.style("opacity", 1);
+                } else {
+                    containerLessLethal1.style("opacity", 0);
                 }
                 // graphicText.text(response.index);
             })
