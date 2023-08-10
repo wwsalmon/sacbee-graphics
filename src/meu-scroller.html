@@ -82,6 +82,10 @@
                     </div>
                 </div>
             </div>
+            <!-- VEHICLES -->
+            <div id="container-vehicles">
+                <img src="./meu-scroller/vehicles.jpg" alt="" style="max-width: 100%; max-height: 100%; width: 100%">
+            </div>
         </div>
         <div id="scrolly-text">
             <div class="step">
@@ -107,7 +111,7 @@
                 </div>
             </div>
             <div class="step">
-                <div>The most expensive items in SPD’s equipment are armored vehicles and command centers, including a $400,000 tracked vehicle called a “Rook” that the city council controversially approved its purchase earlier this year.
+                <div>The most expensive items in SPD’s equipment are armored vehicles and command centers, including a $400,000 tracked vehicle called a “Rook” that the city council controversially approved the purchase of earlier this year.
                     <div class="budget-graph" id="budget-graph-vehicles"></div>
                 </div>
             </div>
@@ -129,6 +133,7 @@
         body {
             font-family: "Noto Sans", sans-serif;
             font-size: 18px;
+            margin: 0;
         }
 
         #scrolly {
@@ -244,13 +249,17 @@
         }
 
         #container-less-lethal-1, #container-less-lethal-2 {
+            padding: 16px;
+        }
+
+        #container-less-lethal-1, #container-less-lethal-2, #container-vehicles {
             transition: opacity 0.5s ease;
             height: 100%;
+            width: 100%;
             opacity: 0;
             position: absolute;
             top: 0;
             left: 0;
-            padding: 16px;
         }
 
         #container-less-lethal-2 {
@@ -284,6 +293,12 @@
             position: absolute;
             /* display: none; */
             transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, opacity 0.5s ease;
+        }
+
+        #container-vehicles {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
     <script>
@@ -334,6 +349,10 @@
         const originalGuns = containerLessLethal2.selectAll(".original-gun");
         const transitionGuns = graphic.selectAll(".transition-gun");
 
+        // vehicles
+
+        const containerVehicles = graphic.select("#container-vehicles");
+
         function handleResize() {
             scroller.resize();
         }
@@ -382,6 +401,12 @@
                 }
 
                 if (!([3,4].includes(response.index))) transitionGuns.style("opacity", 0);
+
+                if (response.index === 5) {
+                    setTimeout(() => {containerVehicles.style("opacity", 1)}, +(response.direction === "down") * 500);
+                } else {
+                    containerVehicles.style("opacity", 0);
+                }
                 // graphicText.text(response.index);
             })
             // .onStepExit((response) => console.log(response));
