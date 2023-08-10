@@ -84,7 +84,8 @@
             </div>
             <!-- VEHICLES -->
             <div id="container-vehicles">
-                <img src="./meu-scroller/vehicles.jpg" alt="" style="max-width: 100%; max-height: 100%; width: 100%">
+                <img src="./meu-scroller/vehicles.jpg" alt="" id="vehicles">
+                <img src="./meu-scroller/vehicles-vertical.jpg" alt="" id="vehicles-vertical">
             </div>
         </div>
         <div id="scrolly-text">
@@ -250,6 +251,7 @@
 
         #container-less-lethal-1, #container-less-lethal-2 {
             padding: 16px;
+            box-sizing: border-box;
         }
 
         #container-less-lethal-1, #container-less-lethal-2, #container-vehicles {
@@ -299,6 +301,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        #vehicles, #vehicles-vertical {
+            max-width: 100%; max-height: 100%; width: 100%;
+        }
+
+        #vehicles {
+            display: none;
+        }
+
+        @media (min-aspect-ratio: 0.9/1) {
+            #vehicles {
+                display: block;
+            }
+
+            #vehicles-vertical {
+                display: none;
+            }
         }
     </style>
     <script>
@@ -395,7 +415,7 @@
                     for (let selector of ["shotgun", "1425", "pepperball"]) {
                         transitionLessLethal(selector, true);
                     }
-                    setTimeout(() => {containerLessLethal2.style("opacity", 1)}, +(response.direction === "down") * 500);
+                    setTimeout(() => {containerLessLethal2.style("opacity", 1)}, 500);
                 } else {
                     containerLessLethal2.style("opacity", 0);
                 }
@@ -421,12 +441,14 @@
             const container = containerLessLethal2.select(`#container-${selector}`);
             const finalGun = container.select("img");
 
+            const containerLeft = containerLessLethal1.node().getBoundingClientRect().left;
+
             if (isFinal) {
                 const {width: finalWidth, left: finalLeft, top: finalTop} = finalGun.node().getBoundingClientRect();
-                transitionGun.style("width", finalWidth + "px").style("left", (finalLeft - 8) + "px").style("top", finalTop + "px");
+                transitionGun.style("width", finalWidth + "px").style("left", (finalLeft - containerLeft + 16) + "px").style("top", finalTop + "px");
             } else {
                 const {width: firstWidth, left: firstLeft, top: firstTop} = firstGun.node().getBoundingClientRect();
-                transitionGun.style("width", firstWidth + "px").style("left", (firstLeft - 8) + "px").style("top", firstTop + "px");
+                transitionGun.style("width", firstWidth + "px").style("left", (firstLeft - containerLeft + 16) + "px").style("top", firstTop + "px");
             }
         }
 
