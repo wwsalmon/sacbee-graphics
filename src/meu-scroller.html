@@ -46,9 +46,9 @@
             </div>
             <!-- LESS LETHAL -->
             <div style="display: flex; align-items: center; justify-content: start; position: relative;" id="container-less-lethal-1">
-                <img src="./meu-scroller/shotgun-turned.png" alt="" style="width: 23.67%">
-                <img src="./meu-scroller/1425-turned.png" alt="" style="width: 16.8%; margin-left: 3%;">
-                <img src="./meu-scroller/pepperball-turned.png" alt="" style="width: 14.93%; margin-left: 3%;">
+                <img src="./meu-scroller/shotgun-turned.png" alt="" style="width: 23.67%" id="original-shotgun" class="original-gun">
+                <img src="./meu-scroller/1425-turned.png" alt="" style="width: 16.8%; margin-left: 3%;" id="original-1425" class="original-gun">
+                <img src="./meu-scroller/pepperball-turned.png" alt="" style="width: 14.93%; margin-left: 3%;" id="original-pepperball" class="original-gun">
                 <img src="./meu-scroller/7290-2.png" alt="" style="width: 3%; margin-left: 9%">
                 <img src="./meu-scroller/1082.png" alt="" style="width: 3%; margin-left: 3%;">
                 <img src="./meu-scroller/1030.png" alt="" style="width: 3%; margin-left: 3%;">
@@ -66,6 +66,9 @@
                 </div>
             </div>
             <!-- LESS LETHAL PT 2 -->
+            <img src="./meu-scroller/shotgun-turned.png" alt="" id="transition-shotgun" class="transition-gun">
+            <img src="./meu-scroller/1425-turned.png" alt="" id="transition-1425" class="transition-gun">
+            <img src="./meu-scroller/pepperball-turned.png" alt="" id="transition-pepperball" class="transition-gun">
             <div id="container-less-lethal-2">
                 <div id="container-shotgun">
                     <div><span>552 Remington Model 870 12 Gauge Shotguns, $522,192</span></div>
@@ -241,7 +244,7 @@
         }
 
         #container-less-lethal-1, #container-less-lethal-2 {
-            transition: opacity 0.2s ease;
+            transition: opacity 0.5s ease;
             height: 100%;
             opacity: 0;
             position: absolute;
@@ -275,6 +278,12 @@
             width: 100%;
             grid-template-columns: repeat(18, 1fr);
             margin-bottom: 18px;
+        }
+
+        .transition-gun {
+            position: absolute;
+            /* display: none; */
+            transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, opacity 0.5s ease;
         }
     </style>
     <script>
@@ -313,21 +322,24 @@
 
         const containerLessLethal2 = graphic.select("#container-less-lethal-2");
 
-        const containerShotgun = graphic.select("#container-shotgun");
+        const containerShotgun = containerLessLethal2.select("#container-shotgun");
         containerShotgun.selectAll("img").data(new Array(552).fill(0)).join("img").attr("src", "./meu-scroller/shotgun-solid.png");
 
-        const container1425 = graphic.select("#container-1425");
+        const container1425 = containerLessLethal2.select("#container-1425");
         container1425.selectAll("img").data(new Array(98).fill(0)).join("img").attr("src", "./meu-scroller/1425-solid.png");
 
-        const containerPepperball = graphic.select("#container-pepperball");
+        const containerPepperball = containerLessLethal2.select("#container-pepperball");
         containerPepperball.selectAll("img").data(new Array(70).fill(0)).join("img").attr("src", "./meu-scroller/pepperball-solid.png");
+
+        const originalGuns = containerLessLethal2.selectAll(".original-gun");
+        const transitionGuns = graphic.selectAll(".transition-gun");
 
         function handleResize() {
             scroller.resize();
         }
 
         scroller
-            .setup({ container: "#scrolly", graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5 })
+            .setup({ graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5 })
             .onStepEnter((response) => {
                 console.log(response);
                 if (response.index === 0) {
@@ -335,25 +347,65 @@
                     containerM489.selectAll("img").style("width", "140px");
                     otherGunContainers.style("opacity", 0);
                 } else if (response.index === 1) {
-                    loadAllGuns();
+                    loadAllGuns(response.direction === "down");
                 } else if (response.index === 2) {
-                    loadAllGuns();
+                    setTimeout(() => {
+                        loadAllGuns(false);
+                    }, +(response.direction === "up") * 500);
                 } else {
                     containerM489.style("opacity", 0);
                     otherGunContainers.style("opacity", 0);
                 }
 
-                containerLessLethal1.style("opacity", +(response.index === 3));
-                containerLessLethal2.style("opacity", +(response.index === 4));
+                // containerLessLethal1.style("opacity", +(response.index === 3));
+                // containerLessLethal2.style("opacity", +(response.index === 4));
+                
+                if (response.index === 3) {
+                    setTimeout(() => {containerLessLethal1.style("opacity", 1)}, 500);
+                    setTimeout(() => {
+                        transitionGuns.style("opacity", 1);
+                        for (let selector of ["shotgun", "1425", "pepperball"]) {
+                            transitionLessLethal(selector, false);
+                        }
+                    }, +(response.direction === "down") * 500);
+                } else {
+                    containerLessLethal1.style("opacity", 0);
+                }
+
+                if (response.index === 4) {
+                    for (let selector of ["shotgun", "1425", "pepperball"]) {
+                        transitionLessLethal(selector, true);
+                    }
+                    setTimeout(() => {containerLessLethal2.style("opacity", 1)}, +(response.direction === "down") * 500);
+                } else {
+                    containerLessLethal2.style("opacity", 0);
+                }
+
+                if (!([3,4].includes(response.index))) transitionGuns.style("opacity", 0);
                 // graphicText.text(response.index);
             })
-            .onStepExit((response) => console.log(response));
+            // .onStepExit((response) => console.log(response));
 
         handleResize();
 
         window.addEventListener("resize", handleResize);
 
-        function loadAllGuns() {
+        function transitionLessLethal(selector, isFinal) {
+            const firstGun = containerLessLethal1.select(`#original-${selector}`);
+            const transitionGun = graphic.select(`#transition-${selector}`);
+            const container = containerLessLethal2.select(`#container-${selector}`);
+            const finalGun = container.select("img");
+
+            if (isFinal) {
+                const {width: finalWidth, left: finalLeft, top: finalTop} = finalGun.node().getBoundingClientRect();
+                transitionGun.style("width", finalWidth + "px").style("left", (finalLeft - 8) + "px").style("top", finalTop + "px");
+            } else {
+                const {width: firstWidth, left: firstLeft, top: firstTop} = firstGun.node().getBoundingClientRect();
+                transitionGun.style("width", firstWidth + "px").style("left", (firstLeft - 8) + "px").style("top", firstTop + "px");
+            }
+        }
+
+        function loadAllGuns(isDelay) {
             const numPerRow = 18;
             const margin = 2;
             const leftMargin = 1 + 6 + margin + 1;
@@ -362,9 +414,11 @@
             const singleWidth = Math.floor(outerWidth / numDivisions);
 
             containerM489.style("opacity", 1).style("background-color", "pink").style("left", singleWidth + "px").style("top", "16px").style("transform", "none").selectAll("img").style("width", singleWidth + "px");
-            containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
-            gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
-            otherGunContainers.style("opacity", 1);
+            setTimeout(() => {
+                containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+                gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+                otherGunContainers.style("opacity", 1);
+            }, +isDelay * 750);
         }
 
         const cost = [
