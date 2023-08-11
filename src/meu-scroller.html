@@ -332,6 +332,8 @@
         }
     </style>
     <script>
+        let currentSlide = null;
+
         const scroller = scrollama();
         const container = d3.select("#scrolly");
         const graphic = container.select("#scrolly-graphic");
@@ -390,7 +392,7 @@
         scroller
             .setup({ graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5 })
             .onStepEnter((response) => {
-                console.log(response);
+                currentSlide = response.index;
                 if (response.index === 0) {
                     containerM489.style("transform", "translate(-50%,-50%)").style("top", "50%").style("left", "50%").style("opacity", 1).style("background-color", "transparent");
                     containerM489.selectAll("img").style("width", "140px");
@@ -399,7 +401,7 @@
                     loadAllGuns(response.direction === "down");
                 } else if (response.index === 2) {
                     setTimeout(() => {
-                        loadAllGuns(false);
+                        if (currentSlide === 2) loadAllGuns(false);
                     }, +(response.direction === "up") * 500);
                 } else {
                     containerM489.style("opacity", 0);
@@ -410,11 +412,13 @@
                 // containerLessLethal2.style("opacity", +(response.index === 4));
                 
                 if (response.index === 3) {
-                    setTimeout(() => {containerLessLethal1.style("opacity", 1)}, 500);
+                    setTimeout(() => {if (currentSlide === 3) containerLessLethal1.style("opacity", 1)}, 500);
                     setTimeout(() => {
-                        transitionGuns.style("opacity", 1);
-                        for (let selector of ["shotgun", "1425", "pepperball"]) {
-                            transitionLessLethal(selector, false);
+                        if (currentSlide === 3) {
+                            transitionGuns.style("opacity", 1);
+                            for (let selector of ["shotgun", "1425", "pepperball"]) {
+                                transitionLessLethal(selector, false);
+                            }
                         }
                     }, +(response.direction === "down") * 500);
                 } else {
@@ -425,7 +429,7 @@
                     for (let selector of ["shotgun", "1425", "pepperball"]) {
                         transitionLessLethal(selector, true);
                     }
-                    setTimeout(() => {containerLessLethal2.style("opacity", 1)}, 500);
+                    setTimeout(() => {if (currentSlide === 4) containerLessLethal2.style("opacity", 1)}, 500);
                 } else {
                     containerLessLethal2.style("opacity", 0);
                 }
@@ -433,7 +437,7 @@
                 if (!([3,4].includes(response.index))) transitionGuns.style("opacity", 0);
 
                 if (response.index === 5) {
-                    setTimeout(() => {containerVehicles.style("opacity", 1)}, +(response.direction === "down") * 500);
+                    setTimeout(() => {if (currentSlide === 5) containerVehicles.style("opacity", 1)}, +(response.direction === "down") * 500);
                 } else {
                     containerVehicles.style("opacity", 0);
                 }
@@ -472,9 +476,11 @@
 
             containerM489.style("opacity", 1).style("background-color", "pink").style("left", singleWidth + "px").style("top", "16px").style("transform", "none").selectAll("img").style("width", singleWidth + "px");
             setTimeout(() => {
-                containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
-                gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
-                otherGunContainers.style("opacity", 1);
+                if ([1,2].includes(currentSlide)) {
+                    containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+                    gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
+                    otherGunContainers.style("opacity", 1);
+                }
             }, +isDelay * 750);
         }
 
