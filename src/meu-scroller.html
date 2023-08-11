@@ -7,19 +7,183 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js" integrity="sha512-YE2BOLTLBOkZ10ahg304yD425ncH98QTjdCgfsjzAJB1tMHWeruT4BBrHL2FXfXLjFJqfsB7I7qhqxubPsT/dw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        .temp-container {
+            margin: 0 auto; max-width: 728px; padding: 64px 0;
+        }
+
+        .temp-container h3 {
+            font-size: 18px; text-transform: uppercase;
+        }
+    </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div style="margin: 0 auto; max-width: 728px; padding: 64px 0;">
+    <div class="temp-container">
         <h1 style="font-family: Noto Serif, serif; text-align: center; line-height: 1.1;">Sac PD wants to add $360,000 in military equipment to $4.5 million arsenal, draft report says</h1>
-        <p>The Sacramento Police Department released draft reports on July 24 detailing the rifles, vehicles, drones and other “military equipment” in its inventory, as mandated by Assembly Bill 481, which Gov. Gavin Newsom signed into law in September 2021.</p>
+        <p>The Sacramento Police Department <a href="https://www.cityofsacramento.org/Police/Transparency/Assembly-Bill-481-Military-Equipment-Use">released draft reports last month</a> detailing the rifles, vehicles, drones and other “military equipment” in its inventory, as mandated by Assembly Bill 481, which Gov. Gavin Newsom signed into law in September 2021.</p>
 
-        <p>In addition to listing the department’s $4.5 million of existing equipment, the report also spelled out requests for $360,000 of new equipment, including 18 M4-89 rifles for the department’s SWAT team. AB 481 requires the department to receive approval from the city council to acquire new military equipment.</p>
+        <p>In addition to cataloguing $4.5 million of existing equipment, the report also listed requests for $360,000 of new equipment, including 18 M4-89 rifles for the department’s SWAT team. AB 481 requires the department to receive approval from the city council to acquire new military equipment.</p>
 
-        <p>The Sacramento Community Police Review Commission hosted open meetings on July 27 and 29 to solicit community input before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at bit.ly/sacpd-military-feedback-2023.</p>
+        <p>The Sacramento Community Police Review Commission hosted <a href="https://www.sacbee.com/news/local/article277753803.html">open meetings on July 27 and 29 to solicit community input</a> before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at <a href="https://bit.ly/sacpd-military-feedback-2023">bit.ly/sacpd-military-feedback-2023</a>.</p>
 
-        <p>Here’s a breakdown of the SPD’s existing and requested military equipment.</p>
+        <p>Here’s a breakdown of the Sacramento Police Department’s requested and existing military equipment.</p>
+
+        <h3>Requested equipment</h3>
+
+        <p>In addition to replenishing existing inventories, the department is requesting $139,000 in new models of rifles, munitions and drones for FY24:</p>
+    </div>
+    <div id="meu-graphic-container">
+        <div id="meu-graphic-left">
+            <div class="meu-graphic-label">
+                <div><span><b>M4-89 rifles</b></span></div>
+                <div><span>18 requested for $40,014 / No reported lifespan</span></div>
+            </div>
+            <div id="meu-graphic-m489" class="meu-graphic-grid"></div>
+            <div class="meu-graphic-label">
+                <div><span><b>Barrier-penetrating pepper spray rounds</b></span></div>
+                <div><span>50 requested for $1,700 / 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-pepper-rounds" class="meu-graphic-grid"></div>
+        </div>
+        <div id="meu-graphic-right">
+            <div class="meu-graphic-label">
+                <div><span><b>Training ammunition, 5.56 NATO caliber</b></span></div>
+                <div><span>1,000 rounds requested for $750 / 15-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-training-rounds" class="meu-graphic-single">
+                <img src="./meu-scroller/training-round.png" alt="" style="width: 50%">
+            </div>
+            <div class="meu-graphic-label">
+                <div><span><b>AR-10 ammunition</b></span></div>
+                <div><span>6,000 rounds requested for $8,100 / 15-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-ar10-rounds" class="meu-graphic-single">
+                <img src="./meu-scroller/ar10-round.png" alt="" style="width: 50%">
+            </div>
+            <div class="meu-graphic-label">
+                <div><span><b>DJI Mavic 3 Enterprise</b></span></div>
+                <div><span>3 requested for $18,900 / 3- to 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-mavic-3-enterprise" class="meu-graphic-grid"></div>
+            <div class="meu-graphic-label">
+                <div><span><b>DJI Avata</b></span></div>
+                <div><span>1 requested for $1,428 / 3- to 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-avata" class="meu-graphic-single">
+                <img src="./meu-scroller/dji-avata.png" alt="" style="width: 25%">
+            </div>
+            <div class="meu-graphic-label">
+                <div><span><b>DJI Mavic 3 Cine Premium Combo</b></span></div>
+                <div><span>1 requested for $4,999 / 3- to 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-mavic-3-cine" class="meu-graphic-single">
+                <img src="./meu-scroller/dji-mavic-3-cine.png" alt="" style="width: 40%">
+            </div>
+        </div>
+    </div>
+    <div id="meu-graphic-bottom">
+        <div id="meu-graphic-bottom-left">
+            <div class="meu-graphic-label">
+                <div><span><b>Launchable pepper spray grenades</b></span></div>
+                <div><span>50 requested for $2,900 / 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-pepper-grenades" class="meu-graphic-grid"></div>
+        </div>
+        <div id="meu-graphic-bottom-right">
+            <div class="meu-graphic-label">
+                <div><span><b>Launchable tear gas grenades</b></span></div>
+                <div><span>50 requested for $60,000 / 5-year lifespan</span></div>
+            </div>
+            <div id="meu-graphic-tear-gas" class="meu-graphic-grid"></div>
+        </div>
+    </div>
+    <style>
+        #meu-graphic-container, #meu-graphic-bottom {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            #meu-graphic-container, #meu-graphic-bottom {
+                display: flex;
+                align-items: flex-start;
+                gap: 5%;
+            }
+
+            #meu-graphic-left {
+                width: 67%;
+            }
+
+            #meu-graphic-right {
+                width: 33%;
+            }
+
+            #meu-graphic-bottom-left, #meu-graphic-bottom-right {
+                width: 50%;
+            }
+        }
+
+        .meu-graphic-label {
+            margin: 36px 0 18px 0;
+            font-size: 14px;
+        }
+
+        .meu-graphic-grid {
+            display: grid;
+            row-gap: 8px;
+        }
+
+        .meu-graphic-grid img {
+            width: 100%;
+        }
+
+        #meu-graphic-m489 {
+            grid-template-columns: repeat(6,1fr);
+        }
+
+        #meu-graphic-mavic-3-enterprise {
+            grid-template-columns: repeat(3,1fr);
+        }
+
+        #meu-graphic-pepper-rounds {
+            grid-template-columns: repeat(25,1fr);
+        }
+
+        #meu-graphic-pepper-rounds img {
+            width: 60%;
+        }
+
+        #meu-graphic-pepper-grenades {
+            grid-template-columns: repeat(15,1fr);
+        }
+
+        #meu-graphic-pepper-grenades img {
+            width: 75%;
+        }
+
+        #meu-graphic-tear-gas {
+            grid-template-columns: repeat(15,1fr);
+        }
+
+        #meu-graphic-tear-gas img {
+            width: 75%;
+        }
+    </style>
+    <script>
+        d3.select("#meu-graphic-m489").selectAll("img").data(new Array(18).fill(0)).join("img").attr("src", "./meu-scroller/m489-turned.png");
+        d3.select("#meu-graphic-pepper-rounds").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "./meu-scroller/pepper-round.png");
+        d3.select("#meu-graphic-pepper-grenades").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "./meu-scroller/pepper-grenade.png");
+        d3.select("#meu-graphic-tear-gas").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "./meu-scroller/tear-gas.png");
+        d3.select("#meu-graphic-mavic-3-enterprise").selectAll("img").data(new Array(3).fill(0)).join("img").attr("src", "./meu-scroller/dji-mavic-3-enterprise.png");
+    </script>
+    <div class="temp-container">
+        <h3>Existing equipment</h3>
+        <p>The Sacramento Police Department's existing inventory includes hundreds of high-caliber rifles, dozens of drones and several armored vehicles.</p>
     </div>
     <div id="scrolly">
         <div id="scrolly-graphic">
@@ -158,12 +322,8 @@
             </div>
         </div>
     </div>
-    <div style="margin: 0 auto; max-width: 728px; padding: 64px 0;">
-        <p>The Sacramento Community Police Review Commission hosted open meetings on July 27 and 29 to solicit community input before providing recommendations regarding the equipment to the city council. The department also encouraged residents to give feedback through an anonymous survey that will stay open until Aug. 25. The survey is available in five languages at bit.ly/sacpd-military-feedback-2023.</p>
-    
-        <p>Here’s a breakdown of the SPD’s existing and requested military equipment.</p>
-    
-        <p>The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.</p>
+    <div class="temp-container">
+        <p>Manufacturer descriptions for each item, as well as policies for their use, are detailed in <a href="https://www.cityofsacramento.org/-/media/Corporate/Files/Police/Transparency/Military-Use-Reports/2023_0803-1255---AMEUR-Draft.pdf?la=en">the full 200-page report</a>, as required by AB 481.</p>
     </div>
     <style>
         body {
