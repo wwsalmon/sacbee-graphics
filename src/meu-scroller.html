@@ -308,7 +308,7 @@
                 </div>
             </div>
             <div class="step">
-                <div>The most expensive items in the department's military equipment are two armored vehicles and two mobile command centers. Earlier this year, the City Council controversially approved the $400,000 purchase of a third armored vehicle called a "Rook," which will be delivered in November.
+                <div>The most expensive items in the department's military equipment are two armored vehicles and two mobile command centers. The City Council controversially approved the $400,000 purchase of a third armored vehicle called a "Rook" earlier this year, which will be delivered in November.
                     <div class="budget-graph" id="budget-graph-vehicles"></div>
                 </div>
             </div>
@@ -795,7 +795,7 @@
         const costTotal = cost.reduce((a,b) => a + b.value, 0);
 
         function makeGraph(selector, highlight) {
-            const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
+            const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", roundingIncrement: 1, minimumFractionDigits: 0, maximumFractionDigits: 0});
 
             const graph = d3.select(selector).style("margin-top", "16px");
             const graphLabel = graph.append("div").append("span").attr("class", "budget-graph-label");
