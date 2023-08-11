@@ -87,6 +87,34 @@
                 <img src="./meu-scroller/vehicles.jpg" alt="" id="vehicles">
                 <img src="./meu-scroller/vehicles-vertical.jpg" alt="" id="vehicles-vertical">
             </div>
+            <!-- DRONES -->
+            <div id="container-drones">
+                <div id="container-drones-new">
+                    <div><span>10 requested new drones</span></div>
+                    <img src="./meu-scroller/dji-mavic-3-enterprise.png" alt="">
+                    <img src="./meu-scroller/dji-mavic-3-enterprise.png" alt="">
+                    <img src="./meu-scroller/dji-mavic-3-enterprise.png" alt="">
+                    <img src="./meu-scroller/dji-mavic-3-cine.png" alt="">
+                    <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="./meu-scroller/m30t.png" alt="" style="grid-column: 1/-1;">
+                    <img src="./meu-scroller/dji-avata.png" alt="">
+                </div>
+                <div id="container-drones-right">
+                    <div class="meu-label"><span>35 DJI Mavic Enterprise Dual, $192,500</span></div>
+                    <div id="container-drones-1" class="container-drone-row"></div>
+                    <div class="meu-label"><span>16 iFlight A85, $4,800</span></div>
+                    <div id="container-drones-2" class="container-drone-row"></div>
+                    <div class="meu-label"><span>13 Happymodel Mobula7, $3,250</span></div>
+                    <div id="container-drones-3" class="container-drone-row"></div>
+                    <div class="meu-label"><span>8 iFlight A75, $2,400</span></div>
+                    <div id="container-drones-4" class="container-drone-row"></div>
+                    <div class="meu-label"><span>+12 drones of other models</span></div>
+                    <div id="container-drones-5" class="container-drone-row"></div>
+                </div>
+            </div>
             <!-- ROBOTS -->
             <div id="container-robots">
                 <img src="./meu-scroller/robots.jpg" alt="" id="robots">
@@ -175,7 +203,8 @@
 
         .step > div {
             padding: 16px;
-            background-color: white;
+            background-color: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
             border: 1px solid #000;
             margin: 0 auto;
             min-width: 300px;
@@ -199,11 +228,11 @@
             font-weight: bold;
         }
 
-        .other-gun-container div, .other-less-lethal-container div, #container-shotgun div {
+        .other-gun-container div, .other-less-lethal-container div, #container-shotgun div, .meu-label {
             opacity: 0.5;
         }
 
-        #container-m489 div, .other-gun-container div, #container-shotgun div, .other-less-lethal-container div  {
+        #container-m489 div, .other-gun-container div, #container-shotgun div, .other-less-lethal-container div, .meu-label, #container-drones-new div {
             grid-column: 1/-1;
             font-size: 12px;
             margin-bottom: 8px;
@@ -261,7 +290,7 @@
             box-sizing: border-box;
         }
 
-        #container-less-lethal-1, #container-less-lethal-2, #container-vehicles, #container-robots {
+        #container-less-lethal-1, #container-less-lethal-2, #container-vehicles, #container-robots, #container-drones {
             transition: opacity 0.5s ease;
             height: 100%;
             width: 100%;
@@ -337,6 +366,57 @@
                 display: none;
             }
         }
+
+        #container-drones {
+            display: flex;
+            align-items: center;
+            gap: 3%;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        #container-drones-new {
+            background-color: pink;
+            padding: 2%;
+            gap: 1vw;
+            width: 18%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #container-drones-right {
+            width: 80%;
+        }
+
+        .container-drone-row {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1vw;
+            margin-bottom: 18px;
+        }
+
+        .container-drone-row img, #container-drones-new img {
+            width: 100%;
+        }
+
+        @media (max-width: 1000px) {
+            .container-drone-row {
+                grid-template-columns: repeat(10, 1fr);
+            }
+        }
+
+@media (max-width: 800px) {
+    .container-drone-row {
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container-drone-row {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
     </style>
     <script>
         let currentSlide = null;
@@ -391,6 +471,25 @@
         // vehicles
 
         const containerVehicles = graphic.select("#container-vehicles");
+
+        // drones
+
+        const containerDrones = graphic.select("#container-drones");
+
+        const containerDrones1 = graphic.select("#container-drones-1");
+        containerDrones1.selectAll("img").data(new Array(35).fill(0)).join("img").attr("src", "./meu-scroller/mavic-2-enterprise-dual.jpg");
+
+        const containerDrones2 = graphic.select("#container-drones-2");
+        containerDrones2.selectAll("img").data(new Array(16).fill(0)).join("img").attr("src", "./meu-scroller/a75.png");
+
+        const containerDrones3 = graphic.select("#container-drones-3");
+        containerDrones3.selectAll("img").data(new Array(13).fill(0)).join("img").attr("src", "./meu-scroller/mobula7.png");
+
+        const containerDrones4 = graphic.select("#container-drones-4");
+        containerDrones4.selectAll("img").data(new Array(8).fill(0)).join("img").attr("src", "./meu-scroller/a75.png");
+
+        const containerDrones5 = graphic.select("#container-drones-5");
+        containerDrones5.selectAll("img").data(new Array(12).fill(0)).join("img").attr("src", "./meu-scroller/drone-icon.png");
 
         // robots
 
@@ -451,6 +550,12 @@
                     setTimeout(() => {if (currentSlide === 5) containerVehicles.style("opacity", 1)}, 500);
                 } else {
                     containerVehicles.style("opacity", 0);
+                }
+
+                if (response.index === 6) {
+                    setTimeout(() => {if (currentSlide === 6) containerDrones.style("opacity", 1)}, 500);
+                } else {
+                    containerDrones.style("opacity", 0);
                 }
 
                 if (response.index === 7) {
