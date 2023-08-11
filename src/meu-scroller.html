@@ -188,24 +188,26 @@
     <div id="scrolly">
         <div id="scrolly-graphic">
             <!-- GUNS -->
-            <div id="container-m489">
-                <div><span>18 new M4-89 rifles</span></div>
-            </div>
-            <div id="container-m16" class="other-gun-container">
-                <div><span>322 Colt M16A1 rifles, converted to semi-automatic AR-15, $280,140</span></div>
-            </div>
-            <div id="guns-col3">
-                <div id="container-6920" class="other-gun-container">
-                    <div><span>200 Colt 6920 Series patrol rifles, $159,744</span></div>
+            <div id="container-guns">
+                <div id="container-m489">
+                    <div><span>18 new M4-89 rifles</span></div>
                 </div>
-                <div id="container-icdi" class="other-gun-container">
-                    <div><span>19 LWRCI SWAT Operator Package IC DI 10.5-inch rifles, $39,330</span></div>
+                <div id="container-m16" class="other-gun-container">
+                    <div><span>322 Colt M16A1 rifles, converted to semi-automatic AR-15, $280,140</span></div>
                 </div>
-                <div id="container-mkii" class="other-gun-container">
-                    <div><span>2 LWRCI Rapid Engagement Precision Rifle MKII 7.62 mm 20”, $6,500</span></div>
-                </div>
-                <div id="container-ar10" class="other-gun-container">
-                    <div><span>2 DPMS AR-10 LR-308 rifles, $3,000</span></div>
+                <div id="guns-col3">
+                    <div id="container-6920" class="other-gun-container">
+                        <div><span>200 Colt 6920 Series patrol rifles, $159,744</span></div>
+                    </div>
+                    <div id="container-icdi" class="other-gun-container">
+                        <div><span>19 LWRCI SWAT Operator Package IC DI 10.5-inch rifles, $39,330</span></div>
+                    </div>
+                    <div id="container-mkii" class="other-gun-container">
+                        <div><span>2 LWRCI Rapid Engagement Precision Rifle MKII 7.62 mm 20”, $6,500</span></div>
+                    </div>
+                    <div id="container-ar10" class="other-gun-container">
+                        <div><span>2 DPMS AR-10 LR-308 rifles, $3,000</span></div>
+                    </div>
                 </div>
             </div>
             <!-- LESS LETHAL -->
@@ -386,19 +388,28 @@
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
 
-        #container-m489 {
-            display: inline-grid;
-            grid-template-columns: repeat(6, 1fr);
-            transition: opacity 0.5s ease, left 1s ease, top 1s ease, transform 1s ease, background-color 1s ease;
+        #container-guns {
+            height: 100%;
+            width: 100%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 8px;
+            top: 0;
+            left: 0;
+            padding: 16px;
+            box-sizing: border-box;
         }
 
         #container-m489 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto repeat(3, minmax(0, 1fr));
+            transition: opacity 0.5s ease, left 1s ease, top 1s ease, transform 1s ease, background-color 1s ease, width 1s ease, height 1s ease, margin 1s ease;
+            padding: 8px;
             font-weight: bold;
+            box-sizing: border-box;
+            width: 80%;
+            max-height: 80%;
+            margin: 50vh 0 0 50%;
+            transform: translate(-50%, -50%);
         }
 
         .other-gun-container div, .other-less-lethal-container div, #container-shotgun div, .meu-label {
@@ -412,22 +423,58 @@
         }
 
         #container-m489 img {
-            width: 140px;
-            max-width: 16vw;
-            /* max-height: 33.33vh; */
+            max-width: 100%;
             transition: all 1s ease;
-        }
-
-        #guns-col3, #container-m16 {
-            position: absolute;
+            max-height: 100%;
         }
 
         .other-gun-container {
-            display: inline-grid;
-            grid-template-columns: repeat(18, 1fr);
+            display: grid;
+            grid-template-columns: repeat(36, 1fr);
             transition: opacity 0.5s ease;
             opacity: 0;
             margin-bottom: 16px;
+        }
+
+        #container-m489.meu-all-guns {
+            background-color: pink;
+            position: static;
+            transform: none;
+            width: 30%;
+            margin: 0 0 16px 0;
+        }
+
+        @media (min-width: 600px) {
+            #guns-col3, #container-m16 {
+                position: absolute;
+                width: calc(40% - 8px);
+                top: 16px;
+                flex-grow: 0;
+            }
+
+            #guns-col3 img, #container-m16 img {
+                width: 100%;
+            }
+
+            #container-m16 {
+                left: 17.5%;
+            }
+
+            #guns-col3 {
+                left: calc(60% - 16px);
+            }
+
+            .other-gun-container {
+                grid-template-columns: repeat(24, 1fr);
+            }
+
+            #container-m489.meu-all-guns {
+                width: 15%;
+            }
+        }
+
+        #guns-col3 img, #container-m16 img {
+            width: 100%;
         }
 
         .budget-graph-bar {
@@ -674,8 +721,7 @@
             .onStepEnter((response) => {
                 currentSlide = response.index;
                 if (response.index === 0) {
-                    containerM489.style("transform", "translate(-50%,-50%)").style("top", "50%").style("left", "50%").style("opacity", 1).style("background-color", "transparent");
-                    containerM489.selectAll("img").style("width", "140px");
+                    containerM489.style("opacity", 1).classed("meu-all-guns", false);
                     otherGunContainers.style("opacity", 0);
                 } else if (response.index === 1) {
                     loadAllGuns(response.direction === "down");
@@ -758,18 +804,9 @@
         }
 
         function loadAllGuns(isDelay) {
-            const numPerRow = 18;
-            const margin = 2;
-            const leftMargin = 1 + 6 + margin + 1;
-            const outerWidth = graphic.node().getBoundingClientRect().width;
-            const numDivisions = leftMargin + numPerRow + 1 + numPerRow + 1;
-            const singleWidth = Math.floor(outerWidth / numDivisions);
-
-            containerM489.style("opacity", 1).style("background-color", "pink").style("left", singleWidth + "px").style("top", "16px").style("transform", "none").selectAll("img").style("width", singleWidth + "px");
+            containerM489.style("opacity", 1).classed("meu-all-guns", true);
             setTimeout(() => {
                 if ([1,2].includes(currentSlide)) {
-                    containerM16.style("left", leftMargin * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
-                    gunsCol3.style("left", (leftMargin + numPerRow + margin) * singleWidth + "px").selectAll("img").style("width", singleWidth + "px");
                     otherGunContainers.style("opacity", 1);
                 }
             }, +isDelay * 750);
