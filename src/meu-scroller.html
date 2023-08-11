@@ -276,7 +276,20 @@
                     <div class="meu-label"><span>8 iFlight A75, $2,400</span></div>
                     <div id="container-drones-4" class="container-drone-row"></div>
                     <div class="meu-label"><span>+12 drones of other models</span></div>
-                    <div id="container-drones-5" class="container-drone-row"></div>
+                    <div id="container-drones-5" class="container-drone-row">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-mini.png" alt="">
+                        <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                        <img src="./meu-scroller/mavic-2-enterprise-advanced.png" alt="">
+                        <img src="./meu-scroller/kopis.png" alt="">
+                        <img src="./meu-scroller/inspire.png" alt="">
+                        <img src="./meu-scroller/matrice-300-rtk.png" alt="">
+                        <img src="./meu-scroller/mavic.png" alt="">
+                    </div>
                 </div>
             </div>
             <!-- ROBOTS -->
@@ -647,10 +660,7 @@
 
         const containerDrones4 = graphic.select("#container-drones-4");
         containerDrones4.selectAll("img").data(new Array(8).fill(0)).join("img").attr("src", "./meu-scroller/a75.png");
-
-        const containerDrones5 = graphic.select("#container-drones-5");
-        containerDrones5.selectAll("img").data(new Array(12).fill(0)).join("img").attr("src", "./meu-scroller/drone-icon.png");
-
+        
         // robots
 
         const containerRobots = graphic.select("#container-robots");
