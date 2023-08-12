@@ -1,0 +1,677 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js" integrity="sha512-YE2BOLTLBOkZ10ahg304yD425ncH98QTjdCgfsjzAJB1tMHWeruT4BBrHL2FXfXLjFJqfsB7I7qhqxubPsT/dw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div id="scrolly">
+    <div id="scrolly-graphic">
+        <!-- GUNS -->
+        <div id="container-guns">
+            <div id="container-m489">
+                <div><span>18 new M4-89 rifles</span></div>
+            </div>
+            <div id="container-m16" class="other-gun-container">
+                <div><span>322 Colt M16A1 rifles, converted to semi-automatic AR-15, $280,140</span></div>
+            </div>
+            <div id="guns-col3">
+                <div id="container-6920" class="other-gun-container">
+                    <div><span>200 Colt 6920 Series patrol rifles, $159,744</span></div>
+                </div>
+                <div id="container-icdi" class="other-gun-container">
+                    <div><span>19 LWRCI SWAT Operator Package IC DI 10.5-inch rifles, $39,330</span></div>
+                </div>
+                <div id="container-mkii" class="other-gun-container">
+                    <div><span>2 LWRCI Rapid Engagement Precision Rifle MKII 7.62 mm 20”, $6,500</span></div>
+                </div>
+                <div id="container-ar10" class="other-gun-container">
+                    <div><span>2 DPMS AR-10 LR-308 rifles, $3,000</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- LESS LETHAL -->
+        <div style="display: flex; align-items: center; justify-content: start; position: relative;" id="container-less-lethal-1">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/shotgun-turned.png" alt="" style="width: 23.67%" id="original-shotgun" class="original-gun">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/1425-turned.png" alt="" style="width: 16.8%; margin-left: 3%;" id="original-1425" class="original-gun">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-turned.png" alt="" style="width: 14.93%; margin-left: 3%;" id="original-pepperball" class="original-gun">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/7290-2.png" alt="" style="width: 3%; margin-left: 9%">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/1082.png" alt="" style="width: 3%; margin-left: 3%;">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/1030.png" alt="" style="width: 3%; margin-left: 3%;">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/sock.png" alt="" style="width: 5%; position: absolute; top: 50%; left: 15%">
+            <div style="position: absolute; top: 50%; left: 40%; display: flex; align-items: flex-end; gap: 10%; width: 4.5%;">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/6320.png" alt="" style="width: 33.33%">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/6325.png" alt="" style="width: 33.33%">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/2262.png" alt="" style="width: 33.33%">
+            </div>
+            <div style="position: absolute; top: 50%; left: 63%; display: grid; grid-template-columns: repeat(2,50%); grid-template-rows: repeat(2,50%); gap: 10%; width: 3%;">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-1.png" alt="" style="width: 100%">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-2.png" alt="" style="width: 100%">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-3.png" alt="" style="width: 100%">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-4.png" alt="" style="width: 100%">
+            </div>
+        </div>
+        <!-- LESS LETHAL PT 2 -->
+        <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/shotgun-turned.png" alt="" id="transition-shotgun" class="transition-gun">
+        <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/1425-turned.png" alt="" id="transition-1425" class="transition-gun">
+        <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-turned.png" alt="" id="transition-pepperball" class="transition-gun">
+        <div id="container-less-lethal-2">
+            <div id="container-shotgun">
+                <div><span>552 Remington Model 870 12-gauge shotguns, $522,192</span></div>
+            </div>
+            <div id="container-less-lethal-right">
+                <div id="container-1425" class="other-less-lethal-container">
+                    <div><span>98 Defense Technology 40 mm single-shot launchers, $98,000</span></div>
+                </div>
+                <div id="container-pepperball" class="other-less-lethal-container">
+                    <div><span>70 PepperBall VKS Carbines, $94,430</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- VEHICLES -->
+        <div id="container-vehicles">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/vehicles.jpg" alt="" id="vehicles">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/vehicles-vertical.jpg" alt="" id="vehicles-vertical">
+        </div>
+        <!-- DRONES -->
+        <div id="container-drones">
+            <div id="container-drones-new">
+                <div><span>10 requested new drones</span></div>
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-enterprise.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-enterprise.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-enterprise.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-cine.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/m30t.png" alt="" style="grid-column: 1/-1;">
+                <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-avata.png" alt="">
+            </div>
+            <div id="container-drones-right">
+                <div class="meu-label"><span>35 DJI Mavic Enterprise Dual, $192,500</span></div>
+                <div id="container-drones-1" class="container-drone-row"></div>
+                <div class="meu-label"><span>16 iFlight A85, $4,800</span></div>
+                <div id="container-drones-2" class="container-drone-row"></div>
+                <div class="meu-label"><span>13 Happymodel Mobula7, $3,250</span></div>
+                <div id="container-drones-3" class="container-drone-row"></div>
+                <div class="meu-label"><span>8 iFlight A75, $2,400</span></div>
+                <div id="container-drones-4" class="container-drone-row"></div>
+                <div class="meu-label"><span>+12 drones of other models</span></div>
+                <div id="container-drones-5" class="container-drone-row">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-mini.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-advanced.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/kopis.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/inspire.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/matrice-300-rtk.png" alt="">
+                    <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- ROBOTS -->
+        <div id="container-robots">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/robots.jpg" alt="" id="robots">
+        </div>
+    </div>
+    <div id="scrolly-text">
+        <div class="step">
+            <div>
+                The new military equipment would be a small fraction of the department’s more than $4.5 million inventory.
+                <div class="budget-graph" id="budget-graph-new"></div>
+            </div>
+        </div>
+        <div class="step">
+            <div>The Sacramento Police Department currently has 547 rifles defined by AB 481 as “military equipment.”</div>
+        </div>
+        <div class="step">
+            <div>Along with over 762,000 rounds of rifle ammunition, the equipment is worth over $787,000.
+                <div class="budget-graph" id="budget-graph-rifles"></div>
+            </div>
+        </div>
+        <div class="step">
+            <div>The department also has "less lethal" equipment such as bean bag rounds for shotguns and projectiles containing tear gas and pepper spray. The weapons, classified as “military equipment” under AB 481 to address police brutality against protesters, can still cause serious injury or death.</div>
+        </div>
+        <div class="step">
+            <div>The department's arsenal includes 552 12-gauge shotguns and over 10,000 bean bag rounds, as well as over 6,000 pepper ball projectiles and 70 launchers.
+                <div class="budget-graph" id="budget-graph-less-lethal"></div>
+            </div>
+        </div>
+        <div class="step">
+            <div>The most expensive items in the department's arsenal are two armored vehicles and two mobile command centers. The City Council approved the controversial $400,000 purchase of a third armored vehicle called the Rook earlier this year, which will be delivered in November.
+                <div class="budget-graph" id="budget-graph-vehicles"></div>
+            </div>
+        </div>
+        <div class="step">
+            <div>The ten new drones the department is requesting would join a fleet of dozens. As of August 14, it was unclear whether two drones were new acquisitions or already in the department's inventory.</div>
+        </div>
+        <div class="step">
+            <div>The department also has five robots, including two $250,000 Northrop Grumman-designed bomb disposal robots, similar models of which were used during the Iraq War.
+                <div class="budget-graph" id="budget-graph-robots"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+#scrolly {
+    position: relative;
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.4;
+}
+
+#scrolly-graphic {
+    position: sticky;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#scrolly-graphic > p {
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.step > div {
+    padding: 16px;
+    background-color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid #000;
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+#container-guns {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#container-m489 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto repeat(3, minmax(0, 1fr));
+    transition: opacity 0.5s ease, left 1s ease, top 1s ease, transform 1s ease, background-color 1s ease, width 1s ease, height 1s ease, margin 1s ease;
+    padding: 8px;
+    font-weight: bold;
+    box-sizing: border-box;
+    width: 80%;
+    max-height: 80%;
+    margin: 50vh 0 0 50%;
+    transform: translate(-50%, -50%);
+}
+
+.other-gun-container div, .other-less-lethal-container div, #container-shotgun div, .meu-label {
+    opacity: 0.5;
+}
+
+#container-m489 div, .other-gun-container div, #container-shotgun div, .other-less-lethal-container div, .meu-label, #container-drones-new div {
+    grid-column: 1/-1;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+#container-m489 img {
+    max-width: 100%;
+    transition: all 1s ease;
+    max-height: 100%;
+}
+
+.other-gun-container {
+    display: grid;
+    grid-template-columns: repeat(36, 1fr);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    margin-bottom: 16px;
+}
+
+#container-m489.meu-all-guns {
+    background-color: pink;
+    position: static;
+    transform: none;
+    width: 30%;
+    margin: 0 0 16px 0;
+}
+
+@media (min-width: 600px) {
+    #guns-col3, #container-m16 {
+        position: absolute;
+        width: calc(40% - 8px);
+        top: 16px;
+        flex-grow: 0;
+    }
+
+    #guns-col3 img, #container-m16 img {
+        width: 100%;
+    }
+
+    #container-m16 {
+        left: 17.5%;
+    }
+
+    #guns-col3 {
+        left: calc(60% - 16px);
+    }
+
+    .other-gun-container {
+        grid-template-columns: repeat(24, 1fr);
+    }
+
+    #container-m489.meu-all-guns {
+        width: 15%;
+    }
+}
+
+#guns-col3 img, #container-m16 img {
+    width: 100%;
+}
+
+.budget-graph-bar {
+    height: 100%;
+    border-right: 1px solid white;
+    background-color: #eee;
+}
+
+.budget-graph-bar.past {
+    background-color: #D0E9FF;
+}
+
+.budget-graph-bar.active {
+    background-color: #155288;
+}
+
+.budget-graph-bar:not(.active):hover {
+    background-color: #222;
+}
+
+.budget-graph-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.budget-graph-bottom-label {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+#container-less-lethal-1, #container-less-lethal-2 {
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#container-less-lethal-1, #container-less-lethal-2, #container-vehicles, #container-robots, #container-drones {
+    transition: opacity 0.5s ease;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#container-less-lethal-2 {
+    display: flex;
+    align-items: center;
+}
+
+#container-less-lethal-2 img {
+    width: 100%;
+}
+
+#container-shotgun {
+    display: grid;
+    grid-template-columns: repeat(36, 1fr);
+    width: 64.5%;
+}
+
+#container-less-lethal-right {
+    width: 30.8%;
+    margin-left: auto;
+}
+
+.other-less-lethal-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(18, 1fr);
+    margin-bottom: 18px;
+}
+
+@media (max-width: 600px) {
+    #container-shotgun {
+        grid-template-columns: repeat(20, 1fr);
+    }
+
+    .other-less-lethal-container {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+.transition-gun {
+    position: absolute;
+    /* display: none; */
+    transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, opacity 0.5s ease;
+}
+
+#container-vehicles, #container-robots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vehicles, #vehicles-vertical, #robots {
+    max-width: 100%; max-height: 90%; width: 100%;
+}
+
+#vehicles {
+    display: none;
+}
+
+@media (min-aspect-ratio: 0.9/1) {
+    #vehicles {
+        display: block;
+    }
+
+    #vehicles-vertical {
+        display: none;
+    }
+}
+
+#container-drones {
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#container-drones-new {
+    background-color: pink;
+    padding: 2%;
+    gap: 1vw;
+    width: 18%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#container-drones-right {
+    width: 80%;
+}
+
+.container-drone-row {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1vw;
+    margin-bottom: 18px;
+}
+
+.container-drone-row img, #container-drones-new img {
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .container-drone-row {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+.container-drone-row {
+    grid-template-columns: repeat(9, 1fr);
+}
+}
+
+@media (max-width: 600px) {
+.container-drone-row {
+    grid-template-columns: repeat(7, 1fr);
+}
+}
+</style>
+<script defer>
+    document.getElementById("scrolly").closest(".embed-infographic")?.classList.add("full-bleed");
+
+let currentSlide = null;
+
+const scroller = scrollama();
+const container = d3.select("#scrolly");
+const graphic = container.select("#scrolly-graphic");
+const graphicText = graphic.select("p");
+const text = container.select("#scrolly-text");
+const step = text.selectAll(".step");
+
+const containerM489 = graphic.select("#container-m489");
+containerM489.selectAll("img").data(new Array(18).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/m489-turned.png");
+
+const containerM16 = graphic.select("#container-m16");
+containerM16.selectAll("img").data(new Array(322).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/m16-turned.png");
+
+const container6920 = graphic.select("#container-6920");
+container6920.selectAll("img").data(new Array(200).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/6920-turned.png");
+
+const containerICDI = graphic.select("#container-icdi");
+containerICDI.selectAll("img").data(new Array(19).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/icdi-turned.png");
+
+const containerMKII = graphic.select("#container-mkii");
+containerMKII.selectAll("img").data(new Array(2).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mkii-turned.png");
+
+const containerAR10 = graphic.select("#container-ar10");
+containerAR10.selectAll("img").data(new Array(2).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/ar10-turned.png");
+
+const otherGunContainers = graphic.selectAll(".other-gun-container");
+const gunsCol3 = graphic.select("#guns-col3");
+
+const containerLessLethal1 = graphic.select("#container-less-lethal-1");
+
+const containerLessLethal2 = graphic.select("#container-less-lethal-2");
+
+const containerShotgun = containerLessLethal2.select("#container-shotgun");
+containerShotgun.selectAll("img").data(new Array(552).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/shotgun-solid.png");
+
+const container1425 = containerLessLethal2.select("#container-1425");
+container1425.selectAll("img").data(new Array(98).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/1425-solid.png");
+
+const containerPepperball = containerLessLethal2.select("#container-pepperball");
+containerPepperball.selectAll("img").data(new Array(70).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepperball-solid.png");
+
+const originalGuns = containerLessLethal2.selectAll(".original-gun");
+const transitionGuns = graphic.selectAll(".transition-gun");
+
+const containerVehicles = graphic.select("#container-vehicles");
+
+const containerDrones = graphic.select("#container-drones");
+
+const containerDrones1 = graphic.select("#container-drones-1");
+containerDrones1.selectAll("img").data(new Array(35).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mavic-2-enterprise-dual.jpg");
+
+const containerDrones2 = graphic.select("#container-drones-2");
+containerDrones2.selectAll("img").data(new Array(16).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/a85.png");
+
+const containerDrones3 = graphic.select("#container-drones-3");
+containerDrones3.selectAll("img").data(new Array(13).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/mobula7.png");
+
+const containerDrones4 = graphic.select("#container-drones-4");
+containerDrones4.selectAll("img").data(new Array(8).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/a75.png");
+
+const containerRobots = graphic.select("#container-robots");
+
+const handleResize = () => {
+    scroller.resize();
+};
+
+scroller.setup({ graphic: "#scrolly-graphic", text: "#scrolly-text", step: "#scrolly-text .step", offset: 0.5 })
+    .onStepEnter((response) => {
+        currentSlide = response.index;
+        if (response.index === 0) {
+            containerM489.style("opacity", 1).classed("meu-all-guns", false);
+            otherGunContainers.style("opacity", 0);
+        } else if (response.index === 1) {
+            loadAllGuns(response.direction === "down");
+        } else if (response.index === 2) {
+            setTimeout(() => {
+                if (currentSlide === 2) loadAllGuns(false);
+            }, +(response.direction === "up") * 500);
+        } else {
+            containerM489.style("opacity", 0);
+            otherGunContainers.style("opacity", 0);
+        };
+        
+        if (response.index === 3) {
+            setTimeout(() => {if (currentSlide === 3) containerLessLethal1.style("opacity", 1)}, 500);
+            setTimeout(() => {
+                if (currentSlide === 3) {
+                    transitionGuns.style("opacity", 1);
+                    for (let selector of ["shotgun", "1425", "pepperball"]) {
+                        transitionLessLethal(selector, false);
+                    }
+                }
+            }, +(response.direction === "down") * 500);
+        } else {
+            containerLessLethal1.style("opacity", 0);
+        };
+
+        if (response.index === 4) {
+            for (let selector of ["shotgun", "1425", "pepperball"]) {
+                transitionLessLethal(selector, true);
+            }
+            setTimeout(() => {if (currentSlide === 4) containerLessLethal2.style("opacity", 1)}, 500);
+        } else {
+            containerLessLethal2.style("opacity", 0);
+        };
+
+        if (!([3,4].includes(response.index))) transitionGuns.style("opacity", 0);
+
+        if (response.index === 5) {
+            setTimeout(() => {if (currentSlide === 5) containerVehicles.style("opacity", 1)}, 500);
+        } else {
+            containerVehicles.style("opacity", 0);
+        };
+
+        if (response.index === 6) {
+            setTimeout(() => {if (currentSlide === 6) containerDrones.style("opacity", 1)}, 500);
+        } else {
+            containerDrones.style("opacity", 0);
+        };
+
+        if (response.index === 7) {
+            setTimeout(() => {if (currentSlide === 7) containerRobots.style("opacity", 1)}, 500);
+        } else {
+            containerRobots.style("opacity", 0);
+        };
+    });
+
+handleResize();
+
+window.addEventListener("resize", handleResize);
+
+const transitionLessLethal = (selector, isFinal) => {
+    const firstGun = containerLessLethal1.select(`#original-${selector}`);
+    const transitionGun = graphic.select(`#transition-${selector}`);
+    const container = containerLessLethal2.select(`#container-${selector}`);
+    const finalGun = container.select("img");
+
+    const containerLeft = containerLessLethal1.node().getBoundingClientRect().left;
+
+    if (isFinal) {
+        const {width: finalWidth, left: finalLeft, top: finalTop} = finalGun.node().getBoundingClientRect();
+        transitionGun.style("width", finalWidth + "px").style("left", (finalLeft - containerLeft + 16) + "px").style("top", finalTop + "px");
+    } else {
+        const {width: firstWidth, left: firstLeft, top: firstTop} = firstGun.node().getBoundingClientRect();
+        transitionGun.style("width", firstWidth + "px").style("left", (firstLeft - containerLeft + 16) + "px").style("top", firstTop + "px");
+    }
+};
+
+loadAllGuns = (isDelay) => {
+    containerM489.style("opacity", 1).classed("meu-all-guns", true);
+    setTimeout(() => {
+        if ([1,2].includes(currentSlide)) {
+            otherGunContainers.style("opacity", 1);
+        }
+    }, +isDelay * 750);
+};
+
+const cost = [
+        {
+            "label": "New equipment",
+            "value": 361700
+        },
+        {
+            "label": "Rifles and rifle ammunition",
+            "value": 787359.21
+        },
+        {
+            "label": "Less lethal and diversionary weapons",
+            "value": 871232.99
+        },
+        {
+            "label": "Armored vehicles and command centers",
+            "value": 2009746.65
+        },
+        {
+            "label": "Robots and unmanned aerial systems",
+            "value": 820934
+        },
+        {
+            "label": "Other",
+            "value": 72140.92
+        }
+    ];
+
+const costTotal = cost.reduce((a,b) => a + b.value, 0);
+
+makeGraph = (selector, highlight) => {
+    const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", roundingIncrement: 1, minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+    const graph = d3.select(selector).style("margin-top", "16px");
+    const graphLabel = graph.append("div").append("span").attr("class", "budget-graph-label");
+    const graphBar = graph.append("div").style("display", "flex").style("height","32px").style("width","100%").style("margin", "8px 0");
+    const graphBottomLabel = graph.append("div").style("text-align","right").append("span").attr("class","budget-graph-bottom-label").text(formatter.format(costTotal) + " of equipment after new acquisitions");
+
+    const thisCost = cost.find(d => d.label === highlight).value;
+    const thisIndex = cost.findIndex(d => d.label === highlight);
+
+    const resetLabel = () => {
+        graphLabel.style("color", "#155288").text(`${highlight}: ${formatter.format(thisCost)} (${(thisCost / costTotal * 100).toFixed(1)}%)`);
+    };
+
+    resetLabel();
+
+    graphBar.selectAll(".budget-graph-bar")
+        .data(cost)
+        .join("div")
+        .attr("class", (d, i) => ("budget-graph-bar" + ((d.label === highlight) ? " active" : (i < thisIndex) ? " past" : "")))
+        .style("width", d => (d.value / costTotal * 100).toString() + "%")
+        .on("mouseenter", (e, d) => {
+            if (d.label !== highlight) {
+                const thisCost = cost.find(x => x.label === d.label).value;
+                graphLabel.text(`${d.label}: ${formatter.format(thisCost)} (${(thisCost / costTotal * 100).toFixed(1)}%)`).style("color", "#222");
+            }
+        })
+        .on("mouseleave", resetLabel);
+};
+
+makeGraph("#budget-graph-new", "New equipment");
+makeGraph("#budget-graph-rifles", "Rifles and rifle ammunition");
+makeGraph("#budget-graph-less-lethal", "Less lethal and diversionary weapons");
+makeGraph("#budget-graph-vehicles", "Armored vehicles and command centers");
+makeGraph("#budget-graph-robots", "Robots and unmanned aerial systems");
+
+</script>

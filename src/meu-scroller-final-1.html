@@ -1,0 +1,151 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div id="meu-graphic-container">
+    <div id="meu-graphic-left">
+        <div class="meu-graphic-label">
+            <div><span><b>M4-89 rifles</b></span></div>
+            <div><span>18 requested for $40,014 / No reported lifespan</span></div>
+        </div>
+        <div id="meu-graphic-m489" class="meu-graphic-grid"></div>
+        <div class="meu-graphic-label">
+            <div><span><b>Barrier-penetrating pepper spray rounds</b></span></div>
+            <div><span>50 requested for $1,700 / 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-pepper-rounds" class="meu-graphic-grid"></div>
+    </div>
+    <div id="meu-graphic-right">
+        <div class="meu-graphic-label">
+            <div><span><b>Training ammunition, 5.56 NATO caliber</b></span></div>
+            <div><span>1,000 rounds requested for $750 / 15-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-training-rounds" class="meu-graphic-single">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/training-round.png" alt="" style="width: 50%">
+        </div>
+        <div class="meu-graphic-label">
+            <div><span><b>AR-10 ammunition</b></span></div>
+            <div><span>6,000 rounds requested for $8,100 / 15-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-ar10-rounds" class="meu-graphic-single">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/ar10-round.png" alt="" style="width: 50%">
+        </div>
+        <div class="meu-graphic-label">
+            <div><span><b>DJI Mavic 3 Enterprise</b></span></div>
+            <div><span>3 requested for $18,900 / 3- to 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-mavic-3-enterprise" class="meu-graphic-grid"></div>
+        <div class="meu-graphic-label">
+            <div><span><b>DJI Avata</b></span></div>
+            <div><span>1 requested for $1,428 / 3- to 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-avata" class="meu-graphic-single">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-avata.png" alt="" style="width: 25%">
+        </div>
+        <div class="meu-graphic-label">
+            <div><span><b>DJI Mavic 3 Cine Premium Combo</b></span></div>
+            <div><span>1 requested for $4,999 / 3- to 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-mavic-3-cine" class="meu-graphic-single">
+            <img src="https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-cine.png" alt="" style="width: 40%">
+        </div>
+    </div>
+</div>
+<div id="meu-graphic-bottom">
+    <div id="meu-graphic-bottom-left">
+        <div class="meu-graphic-label">
+            <div><span><b>Launchable pepper spray grenades</b></span></div>
+            <div><span>50 requested for $2,900 / 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-pepper-grenades" class="meu-graphic-grid"></div>
+    </div>
+    <div id="meu-graphic-bottom-right">
+        <div class="meu-graphic-label">
+            <div><span><b>Launchable tear gas grenades</b></span></div>
+            <div><span>50 requested for $60,000 / 5-year lifespan</span></div>
+        </div>
+        <div id="meu-graphic-tear-gas" class="meu-graphic-grid"></div>
+    </div>
+</div>
+<style>
+#meu-graphic-container, #meu-graphic-bottom {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    #meu-graphic-container, #meu-graphic-bottom {
+        display: flex;
+        align-items: flex-start;
+        gap: 5%;
+    }
+
+    #meu-graphic-left {
+        width: 67%;
+    }
+
+    #meu-graphic-right {
+        width: 33%;
+    }
+
+    #meu-graphic-bottom-left, #meu-graphic-bottom-right {
+        width: 50%;
+    }
+}
+
+.meu-graphic-label {
+    margin: 36px 0 18px 0;
+    font-size: 14px;
+}
+
+.meu-graphic-grid {
+    display: grid;
+    row-gap: 8px;
+}
+
+.meu-graphic-grid img {
+    width: 100%;
+}
+
+#meu-graphic-m489 {
+    grid-template-columns: repeat(6,1fr);
+}
+
+#meu-graphic-mavic-3-enterprise {
+    grid-template-columns: repeat(3,1fr);
+}
+
+#meu-graphic-pepper-rounds {
+    grid-template-columns: repeat(25,1fr);
+}
+
+#meu-graphic-pepper-rounds img {
+    width: 60%;
+}
+
+#meu-graphic-pepper-grenades {
+    grid-template-columns: repeat(15,1fr);
+}
+
+#meu-graphic-pepper-grenades img {
+    width: 75%;
+}
+
+#meu-graphic-tear-gas {
+    grid-template-columns: repeat(15,1fr);
+}
+
+#meu-graphic-tear-gas img {
+    width: 75%;
+}
+</style>
+<script>
+    d3.select("#meu-graphic-m489").selectAll("img").data(new Array(18).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/m489-turned.png");
+    d3.select("#meu-graphic-pepper-rounds").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepper-round.png");
+    d3.select("#meu-graphic-pepper-grenades").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/pepper-grenade.png");
+    d3.select("#meu-graphic-tear-gas").selectAll("img").data(new Array(50).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/tear-gas.png");
+    d3.select("#meu-graphic-mavic-3-enterprise").selectAll("img").data(new Array(3).fill(0)).join("img").attr("src", "https://media.sacbee.com/static/graphics/2023/sacbee-military-equipment/dji-mavic-3-enterprise.png");
+    document.getElementById("meu-graphic-container").closest(".embed-infographic")?.classList.add("full-bleed");
+</script>
